@@ -3,10 +3,850 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Demo</title>
+    <title>Wellness Ayurveda - Natural Healing & Wellness</title>
+    <meta
+      name="description"
+      content="Discover authentic Ayurvedic wellness oils and holistic healing solutions at Wellness Ayurveda"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-green: #2d5016;
+        --light-green: #6b8e23;
+        --gold: #d4af37;
+        --brown: #8b4513;
+        --light-brown: #d2b48c;
+        --cream: #faf8f3;
+        --white: #ffffff;
+        --text-dark: #333333;
+        --text-light: #666666;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        background-color: var(--cream);
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        background: var(--white);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 1rem 0;
+      }
+
+      nav .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--primary-green);
+        text-decoration: none;
+      }
+
+      .logo span {
+        color: var(--gold);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: var(--light-green);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--primary-green);
+      }
+
+      /* Hero Section */
+      .hero {
+        margin-top: 70px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green) 0%,
+          var(--light-green) 100%
+        );
+        color: var(--white);
+        padding: 100px 2rem;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        animation: fadeInDown 1s;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        opacity: 0.95;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-primary {
+        background: var(--gold);
+        color: var(--text-dark);
+      }
+
+      .btn-primary:hover {
+        background: #c29d2a;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--white);
+        border: 2px solid var(--white);
+      }
+
+      .btn-secondary:hover {
+        background: var(--white);
+        color: var(--primary-green);
+      }
+
+      .whatsapp-btn {
+        background: #25d366;
+        color: var(--white);
+      }
+
+      .whatsapp-btn:hover {
+        background: #20ba5a;
+      }
+
+      /* Sections */
+      section {
+        padding: 80px 2rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        color: var(--primary-green);
+        margin-bottom: 0.5rem;
+      }
+
+      .section-title .underline {
+        width: 100px;
+        height: 4px;
+        background: var(--gold);
+        margin: 0 auto;
+      }
+
+      /* About Section */
+      #about {
+        background: var(--white);
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .about-text h3 {
+        color: var(--light-green);
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .about-text p {
+        color: var(--text-light);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+
+      .about-image {
+        background: linear-gradient(
+          135deg,
+          var(--light-green),
+          var(--primary-green)
+        );
+        border-radius: 20px;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 4rem;
+      }
+
+      /* Services Section */
+      #services {
+        background: var(--cream);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .service-card {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .service-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .service-card h3 {
+        color: var(--primary-green);
+        margin-bottom: 1rem;
+      }
+
+      .service-card p {
+        color: var(--text-light);
+        line-height: 1.6;
+      }
+
+      /* Products Section */
+      #products {
+        background: var(--white);
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .product-card {
+        background: var(--cream);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-image {
+        background: linear-gradient(135deg, var(--light-brown), var(--brown));
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 3rem;
+      }
+
+      .product-info {
+        padding: 1.5rem;
+      }
+
+      .product-info h3 {
+        color: var(--primary-green);
+        margin-bottom: 0.5rem;
+      }
+
+      .product-info p {
+        color: var(--text-light);
+        margin-bottom: 1rem;
+      }
+
+      .product-price {
+        color: var(--gold);
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      /* Contact Section */
+      #contact {
+        background: var(--cream);
+      }
+
+      .contact-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+
+      .contact-info {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 15px;
+      }
+
+      .contact-info h3 {
+        color: var(--primary-green);
+        margin-bottom: 1.5rem;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: start;
+        margin-bottom: 1.5rem;
+      }
+
+      .info-icon {
+        font-size: 1.5rem;
+        color: var(--gold);
+        margin-right: 1rem;
+      }
+
+      .info-text h4 {
+        color: var(--text-dark);
+        margin-bottom: 0.3rem;
+      }
+
+      .info-text p {
+        color: var(--text-light);
+      }
+
+      .contact-form {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 15px;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--light-green);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--primary-green);
+        color: var(--white);
+        text-align: center;
+        padding: 2rem;
+      }
+
+      footer p {
+        opacity: 0.9;
+      }
+
+      /* Animations */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        nav ul {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        nav ul.active {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--white);
+          padding: 1rem;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .about-content,
+        .contact-wrapper {
+          grid-template-columns: 1fr;
+        }
+
+        .about-image {
+          height: 300px;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h1>Demo Page</h1>
-    <p>This is your demo website.</p>
+    <!-- Navigation -->
+    <nav>
+      <div class="container">
+        <a href="#" class="logo">Wellness <span>Ayurveda</span></a>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        <ul id="nav-menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <h1>Welcome to Wellness Ayurveda</h1>
+        <p>
+          Discover the Ancient Science of Natural Healing & Holistic Wellness
+        </p>
+        <div class="cta-buttons">
+          <a href="#products" class="btn btn-primary">Explore Products</a>
+          <a
+            href="#WHATSAPP_LINK_PLACEHOLDER"
+            class="btn whatsapp-btn"
+            target="_blank"
+            >💬 Chat on WhatsApp</a
+          >
+          <a href="#contact" class="btn btn-secondary">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>About Us</h2>
+          <div class="underline"></div>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <h3>Your Trusted Partner in Holistic Wellness</h3>
+            <p>
+              At Wellness Ayurveda, we believe in the timeless wisdom of
+              Ayurveda – the ancient Indian system of medicine that has been
+              nurturing health and wellness for over 5,000 years. Our mission is
+              to bring the authentic benefits of Ayurvedic healing to modern
+              lifestyles.
+            </p>
+            <p>
+              We carefully curate and formulate our products using traditional
+              Ayurvedic principles combined with modern quality standards. Each
+              product is crafted with natural ingredients, ensuring purity,
+              efficacy, and safety for your well-being.
+            </p>
+            <p>
+              Our team of experienced Ayurvedic practitioners and herbalists
+              work tirelessly to create solutions that address your health
+              concerns naturally, promoting balance between mind, body, and
+              spirit.
+            </p>
+          </div>
+          <div class="about-image">🌿</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Services</h2>
+          <div class="underline"></div>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">🧘</div>
+            <h3>Ayurvedic Consultation</h3>
+            <p>
+              Personalized consultations to understand your unique body
+              constitution (Prakriti) and recommend tailored wellness solutions.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">💆</div>
+            <h3>Therapeutic Massages</h3>
+            <p>
+              Traditional Ayurvedic massage therapies using healing oils to
+              rejuvenate your body and promote relaxation.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🌺</div>
+            <h3>Panchakarma Therapy</h3>
+            <p>
+              Authentic detoxification and rejuvenation treatments to cleanse
+              your body and restore balance naturally.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🍵</div>
+            <h3>Herbal Remedies</h3>
+            <p>
+              Custom herbal formulations designed to address specific health
+              concerns using pure, natural ingredients.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🧠</div>
+            <h3>Stress Management</h3>
+            <p>
+              Holistic approaches including meditation, yoga, and lifestyle
+              counseling to manage stress and enhance mental wellness.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">💪</div>
+            <h3>Wellness Programs</h3>
+            <p>
+              Comprehensive wellness programs tailored to your health goals,
+              combining diet, lifestyle, and Ayurvedic practices.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Products</h2>
+          <div class="underline"></div>
+        </div>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">🌿</div>
+            <div class="product-info">
+              <h3>Relaxation Wellness Oil</h3>
+              <p>
+                A soothing blend of natural herbs and essential oils to promote
+                deep relaxation and stress relief.
+              </p>
+              <div class="product-price">₹899</div>
+              <a href="#contact" class="btn btn-primary">Inquire Now</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">💆</div>
+            <div class="product-info">
+              <h3>Therapeutic Massage Oil</h3>
+              <p>
+                Traditional Ayurvedic oil for deep tissue massage, joint pain
+                relief, and muscle relaxation.
+              </p>
+              <div class="product-price">₹1,299</div>
+              <a href="#contact" class="btn btn-primary">Inquire Now</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">✨</div>
+            <div class="product-info">
+              <h3>Rejuvenation Wellness Oil</h3>
+              <p>
+                Energizing oil blend to revitalize your senses, boost immunity,
+                and enhance overall vitality.
+              </p>
+              <div class="product-price">₹999</div>
+              <a href="#contact" class="btn btn-primary">Inquire Now</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">🌙</div>
+            <div class="product-info">
+              <h3>Sleep & Calm Oil</h3>
+              <p>
+                Specially formulated to promote restful sleep and calm the mind
+                after a long day.
+              </p>
+              <div class="product-price">₹799</div>
+              <a href="#contact" class="btn btn-primary">Inquire Now</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">🔥</div>
+            <div class="product-info">
+              <h3>Warming Pain Relief Oil</h3>
+              <p>
+                Ayurvedic formulation for joint pain, arthritis, and muscular
+                discomfort with warming herbs.
+              </p>
+              <div class="product-price">₹1,099</div>
+              <a href="#contact" class="btn btn-primary">Inquire Now</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">🌸</div>
+            <div class="product-info">
+              <h3>Aromatherapy Wellness Oil</h3>
+              <p>
+                Aromatic blend for meditation, yoga practice, and creating a
+                peaceful atmosphere.
+              </p>
+              <div class="product-price">₹849</div>
+              <a href="#contact" class="btn btn-primary">Inquire Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact Us</h2>
+          <div class="underline"></div>
+        </div>
+        <div class="contact-wrapper">
+          <div class="contact-info">
+            <h3>Get In Touch</h3>
+            <div class="info-item">
+              <div class="info-icon">📍</div>
+              <div class="info-text">
+                <h4>Visit Us</h4>
+                <p>No 56, 7th Cross<br />Bengaluru</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">📞</div>
+              <div class="info-text">
+                <h4>Call Us</h4>
+                <p>+91999999999</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">✉️</div>
+              <div class="info-text">
+                <h4>Email Us</h4>
+                <p>charaka@wellnessayurveda.com</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">🕐</div>
+              <div class="info-text">
+                <h4>Business Hours</h4>
+                <p>9:00 AM to 7:00 PM<br />Monday to Saturday</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">💬</div>
+              <div class="info-text">
+                <h4>WhatsApp</h4>
+                <p>
+                  <a
+                    href="#WHATSAPP_LINK_PLACEHOLDER"
+                    style="color: var(--light-green); text-decoration: none"
+                    >Chat with us on WhatsApp</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form>
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" />
+              </div>
+              <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2025 Wellness Ayurveda. All Rights Reserved. | Bringing Ancient
+          Wisdom to Modern Life
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      function toggleMenu() {
+        const menu = document.getElementById("nav-menu");
+        menu.classList.toggle("active");
+      }
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll("nav ul li a").forEach((link) => {
+        link.addEventListener("click", () => {
+          const menu = document.getElementById("nav-menu");
+          menu.classList.remove("active");
+        });
+      });
+
+      // Form submission handler (for static site)
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert(
+          "Thank you for your message! We will get back to you soon.\n\nNote: This is a demo form. To make it functional, you'll need to integrate a form service like Formspree, Netlify Forms, or EmailJS."
+        );
+      });
+
+      // Smooth scroll offset for fixed nav
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            const offset = 70;
+            const targetPosition = target.offsetTop - offset;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Add active nav state on scroll
+      window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav ul li a");
+
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= sectionTop - 100) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href").slice(1) === current) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
   </body>
 </html>
