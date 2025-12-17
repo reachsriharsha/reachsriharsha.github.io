@@ -105,7 +105,7 @@
 
       /* ========== Hero Section ========== */
       .hero {
-        padding: 4rem 0;
+        padding: 2rem 0;
         text-align: center;
         background: linear-gradient(
           135deg,
@@ -116,8 +116,8 @@
       }
 
       .hero h1 {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        margin-bottom: 0.3rem;
         background: linear-gradient(
           135deg,
           var(--accent-blue),
@@ -129,20 +129,21 @@
       }
 
       .hero .title {
-        font-size: 1.5rem;
+        font-size: 1rem;
         color: var(--text-secondary);
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         font-weight: 300;
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
       }
 
       .hero .contact-info {
         display: flex;
         justify-content: center;
-        gap: 2rem;
+        gap: 1.5rem;
         flex-wrap: wrap;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         color: var(--text-secondary);
+        font-size: 0.9rem;
       }
 
       .hero .contact-info .item {
@@ -154,19 +155,20 @@
       .hero .social-links {
         display: flex;
         justify-content: center;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
+        gap: 1rem;
+        margin-bottom: 1rem;
       }
 
       .hero .social-links a {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
+        gap: 0.4rem;
+        padding: 0.4rem 0.8rem;
         background-color: var(--bg-card);
         border: 1px solid var(--border);
         border-radius: 6px;
         transition: all 0.3s ease;
+        font-size: 0.9rem;
       }
 
       .hero .social-links a:hover {
@@ -177,7 +179,7 @@
 
       .hero .pdf-download {
         display: inline-block;
-        padding: 0.75rem 2rem;
+        padding: 0.5rem 1.2rem;
         background: linear-gradient(
           135deg,
           var(--accent-blue),
@@ -186,6 +188,7 @@
         color: var(--text-primary);
         border-radius: 6px;
         font-weight: 600;
+        font-size: 0.9rem;
         transition: all 0.3s ease;
       }
 
@@ -197,9 +200,9 @@
       /* ========== Stats Bar ========== */
       .stats-bar {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        padding: 3rem 0;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.5rem;
+        padding: 1rem 0;
         background-color: var(--bg-secondary);
         border-bottom: 1px solid var(--border);
       }
@@ -209,7 +212,7 @@
       }
 
       .stat-item .number {
-        font-size: 2.5rem;
+        font-size: 1.4rem;
         font-weight: 700;
         background: linear-gradient(
           135deg,
@@ -223,8 +226,8 @@
 
       .stat-item .label {
         color: var(--text-secondary);
-        font-size: 0.9rem;
-        margin-top: 0.5rem;
+        font-size: 0.75rem;
+        margin-top: 0.2rem;
       }
 
       /* ========== Section Styles ========== */
@@ -257,27 +260,37 @@
       }
 
       /* ========== Summary Section ========== */
-      .summary-list {
-        list-style: none;
-        display: grid;
-        gap: 1rem;
+      .summary-card {
+        background-color: var(--bg-card);
+        padding: 2rem;
+        border-radius: 8px;
+        border: 1px solid var(--border);
         max-width: 900px;
         margin: 0 auto;
       }
 
+      .summary-list {
+        list-style: none;
+        display: grid;
+        gap: 0.6rem;
+        margin: 0;
+        padding: 0;
+      }
+
       .summary-list li {
-        padding: 1rem 1rem 1rem 3rem;
-        background-color: var(--bg-card);
-        border-left: 3px solid var(--accent-blue);
-        border-radius: 6px;
+        padding-left: 1.5rem;
         position: relative;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: var(--text-secondary);
       }
 
       .summary-list li::before {
-        content: "▸";
+        content: "•";
         position: absolute;
-        left: 1rem;
+        left: 0;
         color: var(--accent-blue);
+        font-weight: bold;
         font-size: 1.2rem;
       }
 
@@ -602,11 +615,11 @@
         }
 
         .hero h1 {
-          font-size: 2rem;
+          font-size: 1.5rem;
         }
 
         .hero .title {
-          font-size: 1.2rem;
+          font-size: 0.9rem;
         }
 
         .hero .contact-info {
@@ -775,8 +788,8 @@
           <div class="label">Events/Hour Processed</div>
         </div>
         <div class="stat-item">
-          <div class="number">5</div>
-          <div class="label">Companies</div>
+          <div class="number">3x</div>
+          <div class="label">Products 0 to Market</div>
         </div>
       </div>
     </section>
@@ -785,61 +798,63 @@
     <section id="summary">
       <div class="container">
         <h2>Professional Summary</h2>
-        <ul class="summary-list">
-          <li>
-            Highly accomplished and self-motivated professional with over 20
-            years of experience in product development, specializing in
-            telecommunications and AI/ML domain.
-          </li>
-          <li>
-            Proficiency with Agentic coding tools like Github Co-pilot, windsurf
-            and aware of limitation, merits of them and how to use them in
-            various stages of software development to deployment.
-          </li>
-          <li>
-            Demonstrated aptitude for rapid learning and effective application
-            of new technologies within enterprise environments.
-          </li>
-          <li>
-            Currently driving the strategic adoption of AI applications and
-            Agentic technologies within the organization.
-          </li>
-          <li>
-            Experience in building full stack AI/LLM/ML infrastructure and
-            application solution with AIOps approach.
-          </li>
-          <li>
-            Expertise in adopting open-source applications into enterprise
-            solutions, which accelerates product development and achieves cost
-            optimization.
-          </li>
-          <li>
-            Extensive expertise in the design and development of cloud-native,
-            microservices-based systems.
-          </li>
-          <li>
-            Engineered the S2a (SaMOG) Wi-Fi Offload gateway solution with
-            various features.
-          </li>
-          <li>
-            Architected and implemented 5G-NSA solutions for Cisco MME/PGW for
-            world's first 5G-NSA deployment at T-Mobile.
-          </li>
-          <li>
-            Led the design and development of policy and user plane management
-            functionalities for Cisco's 5G SMF solution. Implemented 5G QoS
-            modeling within the Cisco 5G SMF.
-          </li>
-          <li>
-            Provided critical leadership to the Technical Assistance Center
-            (TAC) team for Jio, supporting the world's first greenfield all-IP
-            4G/LTE network deployment.
-          </li>
-          <li>
-            Pioneered the development to deployment of the first 3GPP-compliant
-            HNbGW for SFR, France.
-          </li>
-        </ul>
+        <div class="summary-card">
+          <ul class="summary-list">
+            <li>
+              Highly accomplished and self-motivated professional with over 20
+              years of experience in product development, specializing in
+              telecommunications and AI/ML domain.
+            </li>
+            <li>
+              Proficiency with Agentic coding tools like Github Co-pilot,
+              windsurf and aware of limitation, merits of them and how to use
+              them in various stages of software development to deployment.
+            </li>
+            <li>
+              Demonstrated aptitude for rapid learning and effective application
+              of new technologies within enterprise environments.
+            </li>
+            <li>
+              Currently driving the strategic adoption of AI applications and
+              Agentic technologies within the organization.
+            </li>
+            <li>
+              Experience in building full stack AI/LLM/ML infrastructure and
+              application solution with AIOps approach.
+            </li>
+            <li>
+              Expertise in adopting open-source applications into enterprise
+              solutions, which accelerates product development and achieves cost
+              optimization.
+            </li>
+            <li>
+              Extensive expertise in the design and development of cloud-native,
+              microservices-based systems.
+            </li>
+            <li>
+              Engineered the S2a (SaMOG) Wi-Fi Offload gateway solution with
+              various features.
+            </li>
+            <li>
+              Architected and implemented 5G-NSA solutions for Cisco MME/PGW for
+              world's first 5G-NSA deployment at T-Mobile.
+            </li>
+            <li>
+              Led the design and development of policy and user plane management
+              functionalities for Cisco's 5G SMF solution. Implemented 5G QoS
+              modeling within the Cisco 5G SMF.
+            </li>
+            <li>
+              Provided critical leadership to the Technical Assistance Center
+              (TAC) team for Jio, supporting the world's first greenfield all-IP
+              4G/LTE network deployment.
+            </li>
+            <li>
+              Pioneered the development to deployment of the first
+              3GPP-compliant HNbGW for SFR, France.
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
