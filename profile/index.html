@@ -1,1466 +1,516 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sri Harsha - Software Engineering Architect</title>
-    <style>
-      /* ========== CSS Variables - Dark Mode Theme ========== */
-      :root {
-        --bg-primary: #0d1117;
-        --bg-secondary: #161b22;
-        --bg-card: #21262d;
-        --bg-hover: #30363d;
-        --text-primary: #f0f6fc;
-        --text-secondary: #8b949e;
-        --text-muted: #6e7681;
-        --accent-blue: #58a6ff;
-        --accent-green: #3fb950;
-        --accent-purple: #a371f7;
-        --accent-orange: #f0883e;
-        --accent-red: #f85149;
-        --accent-yellow: #d29922;
-        --border: #30363d;
-        --shadow: rgba(0, 0, 0, 0.5);
-      }
-
-      /* ========== Global Styles ========== */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
-        background-color: var(--bg-primary);
-        color: var(--text-primary);
-        line-height: 1.6;
-        font-size: 16px;
-      }
-
-      a {
-        color: var(--accent-blue);
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      a:hover {
-        color: var(--accent-green);
-      }
-
-      /* ========== Navigation Bar ========== */
-      nav {
-        position: sticky;
-        top: 0;
-        background-color: rgba(13, 17, 23, 0.95);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--border);
-        padding: 1rem 0;
-        z-index: 1000;
-      }
-
-      nav .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      nav .logo {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: var(--text-primary);
-      }
-
-      nav .nav-links {
-        display: flex;
-        gap: 2rem;
-        list-style: none;
-      }
-
-      nav .nav-links a {
-        color: var(--text-secondary);
-        font-weight: 500;
-        transition: color 0.3s ease;
-      }
-
-      nav .nav-links a:hover {
-        color: var(--accent-blue);
-      }
-
-      /* ========== Container ========== */
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-      }
-
-      /* ========== Hero Section ========== */
-      .hero {
-        padding: 2rem 0;
-        text-align: center;
-        background: linear-gradient(
-          135deg,
-          var(--bg-secondary) 0%,
-          var(--bg-primary) 100%
-        );
-        border-bottom: 1px solid var(--border);
-      }
-
-      .hero h1 {
-        font-size: 2rem;
-        margin-bottom: 0.3rem;
-        background: linear-gradient(
-          135deg,
-          var(--accent-blue),
-          var(--accent-purple)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .hero .title {
-        font-size: 1rem;
-        color: var(--text-secondary);
-        margin-bottom: 1rem;
-        font-weight: 300;
-        letter-spacing: 1.5px;
-      }
-
-      .hero .contact-info {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        margin-bottom: 1rem;
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-      }
-
-      .hero .contact-info .item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .hero .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .hero .social-links a {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.4rem 0.8rem;
-        background-color: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        transition: all 0.3s ease;
-        font-size: 0.9rem;
-      }
-
-      .hero .social-links a:hover {
-        background-color: var(--bg-hover);
-        border-color: var(--accent-blue);
-        transform: translateY(-2px);
-      }
-
-      .hero .pdf-download {
-        display: inline-block;
-        padding: 0.5rem 1.2rem;
-        background: linear-gradient(
-          135deg,
-          var(--accent-blue),
-          var(--accent-purple)
-        );
-        color: var(--text-primary);
-        border-radius: 6px;
-        font-weight: 600;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-      }
-
-      .hero .pdf-download:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(88, 166, 255, 0.4);
-      }
-
-      /* ========== Stats Bar ========== */
-      .stats-bar {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 0.5rem;
-        padding: 1rem 0;
-        background-color: var(--bg-secondary);
-        border-bottom: 1px solid var(--border);
-      }
-
-      .stat-item {
-        text-align: center;
-      }
-
-      .stat-item .number {
-        font-size: 1.4rem;
-        font-weight: 700;
-        background: linear-gradient(
-          135deg,
-          var(--accent-blue),
-          var(--accent-green)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .stat-item .label {
-        color: var(--text-secondary);
-        font-size: 0.75rem;
-        margin-top: 0.2rem;
-      }
-
-      /* ========== Section Styles ========== */
-      section {
-        padding: 4rem 0;
-      }
-
-      section h2 {
-        font-size: 2.5rem;
-        margin-bottom: 3rem;
-        text-align: center;
-        position: relative;
-        padding-bottom: 1rem;
-      }
-
-      section h2::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 3px;
-        background: linear-gradient(
-          90deg,
-          var(--accent-blue),
-          var(--accent-purple)
-        );
-        border-radius: 2px;
-      }
-
-      /* ========== Summary Section ========== */
-      .summary-card {
-        background-color: var(--bg-card);
-        padding: 2rem;
-        border-radius: 8px;
-        border: 1px solid var(--border);
-        max-width: 900px;
-        margin: 0 auto;
-      }
-
-      .summary-list {
-        list-style: none;
-        display: grid;
-        gap: 0.6rem;
-        margin: 0;
-        padding: 0;
-      }
-
-      .summary-list li {
-        padding-left: 1.5rem;
-        position: relative;
-        font-size: 0.9rem;
-        line-height: 1.5;
-        color: var(--text-secondary);
-      }
-
-      .summary-list li::before {
-        content: "•";
-        position: absolute;
-        left: 0;
-        color: var(--accent-blue);
-        font-weight: bold;
-        font-size: 1.2rem;
-      }
-
-      /* ========== Skills Section ========== */
-      .skills-grid {
-        display: grid;
-        gap: 2rem;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-
-      .skill-category {
-        background-color: var(--bg-card);
-        padding: 1.5rem;
-        border-radius: 8px;
-        border: 1px solid var(--border);
-      }
-
-      .skill-category h3 {
-        color: var(--accent-blue);
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
-      }
-
-      .skill-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-      }
-
-      .tag {
-        padding: 0.4rem 0.9rem;
-        background-color: var(--bg-hover);
-        color: var(--text-primary);
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        font-size: 0.85rem;
-        transition: all 0.3s ease;
-      }
-
-      .tag:hover {
-        background-color: var(--accent-blue);
-        border-color: var(--accent-blue);
-        transform: translateY(-2px);
-      }
-
-      .tag.green {
-        border-color: var(--accent-green);
-      }
-      .tag.green:hover {
-        background-color: var(--accent-green);
-      }
-
-      .tag.purple {
-        border-color: var(--accent-purple);
-      }
-      .tag.purple:hover {
-        background-color: var(--accent-purple);
-      }
-
-      .tag.orange {
-        border-color: var(--accent-orange);
-      }
-      .tag.orange:hover {
-        background-color: var(--accent-orange);
-      }
-
-      .tag.yellow {
-        border-color: var(--accent-yellow);
-      }
-      .tag.yellow:hover {
-        background-color: var(--accent-yellow);
-      }
-
-      /* ========== Timeline ========== */
-      .timeline {
-        max-width: 900px;
-        margin: 0 auto;
-        position: relative;
-      }
-
-      .timeline::before {
-        content: "";
-        position: absolute;
-        left: 20px;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: linear-gradient(
-          180deg,
-          var(--accent-blue),
-          var(--accent-purple)
-        );
-      }
-
-      .timeline-item {
-        position: relative;
-        margin-bottom: 3rem;
-        padding-left: 60px;
-      }
-
-      .timeline-item::before {
-        content: "";
-        position: absolute;
-        left: 11px;
-        top: 0;
-        width: 20px;
-        height: 20px;
-        background-color: var(--accent-blue);
-        border: 3px solid var(--bg-primary);
-        border-radius: 50%;
-        z-index: 1;
-      }
-
-      .timeline-card {
-        background-color: var(--bg-card);
-        padding: 2rem;
-        border-radius: 8px;
-        border: 1px solid var(--border);
-        transition: all 0.3s ease;
-      }
-
-      .timeline-card:hover {
-        border-color: var(--accent-blue);
-        transform: translateX(5px);
-      }
-
-      .timeline-card h3 {
-        color: var(--accent-blue);
-        font-size: 1.4rem;
-        margin-bottom: 0.5rem;
-      }
-
-      .timeline-card .role {
-        color: var(--text-secondary);
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-      }
-
-      .timeline-card .period {
-        color: var(--text-muted);
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-      }
-
-      .timeline-card ul {
-        list-style: none;
-        margin-top: 1rem;
-      }
-
-      .timeline-card ul li {
-        padding: 0.5rem 0 0.5rem 1.5rem;
-        position: relative;
-        color: var(--text-secondary);
-      }
-
-      .timeline-card ul li::before {
-        content: "•";
-        position: absolute;
-        left: 0;
-        color: var(--accent-green);
-      }
-
-      /* ========== Projects Grid ========== */
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-      }
-
-      .project-card {
-        background-color: var(--bg-card);
-        padding: 2rem;
-        border-radius: 8px;
-        border: 1px solid var(--border);
-        transition: all 0.3s ease;
-      }
-
-      .project-card:hover {
-        border-color: var(--accent-blue);
-        transform: translateY(-5px);
-        box-shadow: 0 8px 24px var(--shadow);
-      }
-
-      .project-card h3 {
-        color: var(--accent-blue);
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-      }
-
-      .project-card p {
-        color: var(--text-secondary);
-        margin-bottom: 1rem;
-        line-height: 1.7;
-      }
-
-      .project-card ul {
-        list-style: none;
-        margin-top: 1rem;
-      }
-
-      .project-card ul li {
-        padding: 0.4rem 0 0.4rem 1.5rem;
-        position: relative;
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-      }
-
-      .project-card ul li::before {
-        content: "→";
-        position: absolute;
-        left: 0;
-        color: var(--accent-green);
-      }
-
-      .project-badge {
-        display: inline-block;
-        padding: 0.3rem 0.8rem;
-        background-color: var(--bg-hover);
-        color: var(--accent-blue);
-        border-radius: 4px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        margin-top: 1rem;
-      }
-
-      /* ========== Education & Patents ========== */
-      .two-column {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 2rem;
-      }
-
-      .info-card {
-        background-color: var(--bg-card);
-        padding: 2rem;
-        border-radius: 8px;
-        border: 1px solid var(--border);
-      }
-
-      .info-card h3 {
-        color: var(--accent-blue);
-        margin-bottom: 1.5rem;
-        font-size: 1.5rem;
-      }
-
-      .info-card .item {
-        margin-bottom: 1.5rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .info-card .item:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
-      }
-
-      .info-card .item h4 {
-        color: var(--text-primary);
-        margin-bottom: 0.5rem;
-      }
-
-      .info-card .item p {
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-      }
-
-      /* ========== Initiatives Timeline ========== */
-      .initiatives-timeline {
-        max-width: 800px;
-        margin: 3rem auto 0;
-      }
-
-      .initiative-item {
-        display: grid;
-        grid-template-columns: 80px 1fr;
-        gap: 1.5rem;
-        margin-bottom: 1.5rem;
-        padding: 1.5rem;
-        background-color: var(--bg-card);
-        border-radius: 8px;
-        border-left: 3px solid var(--accent-purple);
-      }
-
-      .initiative-item .year {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--accent-purple);
-      }
-
-      .initiative-item .content h4 {
-        color: var(--text-primary);
-        margin-bottom: 0.5rem;
-      }
-
-      .initiative-item .content p {
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-      }
-
-      /* ========== Footer ========== */
-      footer {
-        background-color: var(--bg-secondary);
-        padding: 2rem 0;
-        text-align: center;
-        border-top: 1px solid var(--border);
-        margin-top: 4rem;
-      }
-
-      footer p {
-        color: var(--text-muted);
-      }
-
-      /* ========== Responsive Design ========== */
-      @media (max-width: 768px) {
-        nav .nav-links {
-          flex-wrap: wrap;
-          gap: 1rem;
-          justify-content: center;
-        }
-
-        .hero h1 {
-          font-size: 1.5rem;
-        }
-
-        .hero .title {
-          font-size: 0.9rem;
-        }
-
-        .hero .contact-info {
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-
-        section h2 {
-          font-size: 2rem;
-        }
-
-        .stats-bar {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .projects-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .two-column {
-          grid-template-columns: 1fr;
-        }
-
-        .timeline::before {
-          left: 10px;
-        }
-
-        .timeline-item {
-          padding-left: 40px;
-        }
-
-        .timeline-item::before {
-          left: 2px;
-        }
-
-        .initiative-item {
-          grid-template-columns: 60px 1fr;
-          gap: 1rem;
-        }
-      }
-
-      /* ========== SVG Icons ========== */
-      .icon {
-        width: 20px;
-        height: 20px;
-        fill: currentColor;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Navigation -->
-    <nav>
-      <div class="container">
-        <a href="https://reachsriharsha.github.io/profile" class="logo"
-          >Sri Harsha</a
-        >
-        <ul class="nav-links">
-          <li><a href="#summary">Summary</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="experience-visual.html">📊 Visual Journey</a></li>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sri Harsha – Software Engineering Architect</title>
+  <style>
+    :root {
+      --navy: #0D1B2A;
+      --blue: #3A86FF;
+      --midblue: #5EA8FF;
+      --lightblue: #8BB8E8;
+      --accent: #F0A030;
+      --dark: #E0E0E0;
+      --gray: #9CA3AF;
+      --lightgray: #1A2332;
+      --white: #111827;
+      --card-bg: #1A2332;
+      --body-bg: #0F1724;
+      --text-primary: #E0E0E0;
+      --text-secondary: #9CA3AF;
+      --border-color: #2A3A50;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--text-primary);
+      background: var(--body-bg);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--navy);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      height: 52px;
+    }
+    nav .brand { color: var(--white); font-weight: 700; font-size: 1.05rem; letter-spacing: 1px; }
+    nav ul { display: flex; gap: 1.5rem; list-style: none; }
+    nav a { color: var(--lightblue); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    nav a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #2355a0 100%);
+      color: var(--white);
+      padding: 3.5rem 2rem 3rem;
+    }
+    .hero-inner { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; }
+    .hero h1 { font-size: 3rem; font-weight: 900; letter-spacing: 2px; line-height: 1; }
+    .hero .title { font-size: 1rem; letter-spacing: 3px; color: var(--lightblue); margin-top: 0.5rem; }
+    .hero .contact { font-size: 0.85rem; color: rgba(255,255,255,0.75); margin-top: 0.6rem; }
+    .stats { display: flex; gap: 2rem; flex-wrap: wrap; align-items: flex-end; }
+    .stat { text-align: center; }
+    .stat .num { font-size: 2rem; font-weight: 900; color: var(--accent); }
+    .stat .lbl { font-size: 0.7rem; letter-spacing: 1px; color: rgba(255,255,255,0.6); }
+
+    /* MAIN */
+    main { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
+
+    /* SECTION */
+    .section { background: var(--card-bg); border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.3); margin-bottom: 2rem; padding: 2rem 2rem 1.5rem; }
+    .section-title {
+      font-size: 0.78rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--lightblue); border-bottom: 3px solid var(--blue);
+      padding-bottom: 0.5rem; margin-bottom: 1.4rem;
+    }
+
+    /* SUMMARY */
+    .summary-list { list-style: none; }
+    .summary-list li { padding: 0.25rem 0 0.25rem 1.2rem; position: relative; color: var(--text-secondary); }
+    .summary-list li::before { content: "▸"; position: absolute; left: 0; color: var(--blue); }
+
+    /* ===== TWO-COLUMN EXPERIENCE ===== */
+    .exp-cols-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+    .col-hdr {
+      padding: 1rem 1.4rem;
+      color: var(--white);
+    }
+    .col-hdr.left { background: #0D1B2A; }
+    .col-hdr.right { background: #1A3050; }
+    .col-hdr h3 { font-size: 0.9rem; letter-spacing: 2px; font-weight: 800; }
+    .col-hdr p { font-size: 0.78rem; color: rgba(255,255,255,0.7); margin-top: 0.2rem; }
+
+    .exp-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+    }
+    .exp-col {
+      padding: 1.2rem 1.4rem;
+    }
+    .exp-col.left { border-right: 2px solid var(--border-color); }
+    .exp-col ul { list-style: none; }
+    .exp-col li {
+      padding: 0.22rem 0 0.22rem 1.1rem;
+      position: relative;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .exp-col li::before { content: "▸"; position: absolute; left: 0; color: var(--midblue); font-size: 0.7rem; top: 0.35rem; }
+
+    /* AGENTIC ADVANTAGE CALLOUT */
+    .callout {
+      background: #1E2A1E;
+      border-left: 5px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.4rem;
+      margin-top: 1.2rem;
+    }
+    .callout h4 { color: var(--accent); font-size: 0.88rem; margin-bottom: 0.4rem; }
+    .callout p { font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* WORK PROFILE */
+    .job { margin-bottom: 1.4rem; }
+    .job-header { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: baseline; margin-bottom: 0.4rem; }
+    .job-company { font-weight: 800; color: var(--lightblue); font-size: 0.97rem; }
+    .job-title { color: var(--blue); font-size: 0.9rem; }
+    .job-dates { color: var(--gray); font-size: 0.82rem; margin-left: auto; }
+    .job-list { list-style: none; }
+    .job-list li { padding: 0.2rem 0 0.2rem 1.1rem; position: relative; color: var(--text-secondary); font-size: 0.88rem; }
+    .job-list li::before { content: "▸"; position: absolute; left: 0; color: var(--midblue); font-size: 0.7rem; top: 0.35rem; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
+    .skill-group h4 { font-size: 0.82rem; font-weight: 700; color: var(--blue); margin-bottom: 0.4rem; letter-spacing: 0.5px; }
+    .skill-group p { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.5; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+    .project-card {
+      background: #0F1724;
+      border-radius: 8px;
+      padding: 1.1rem 1.2rem;
+      border-top: 3px solid var(--blue);
+    }
+    .project-card h4 { font-size: 0.92rem; color: var(--lightblue); font-weight: 700; margin-bottom: 0.4rem; }
+    .project-card p { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+    .project-card ul { list-style: none; }
+    .project-card li { font-size: 0.8rem; color: var(--text-secondary); padding-left: 0.9rem; position: relative; }
+    .project-card li::before { content: "·"; position: absolute; left: 0; color: var(--blue); font-size: 1rem; top: -0.1rem; }
+    .badge { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; padding: 0.1rem 0.5rem; border-radius: 3px; background: var(--blue); color: var(--white); margin-top: 0.5rem; }
+
+    /* EDUCATION */
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .edu-item h4 { font-size: 0.9rem; font-weight: 700; color: var(--lightblue); }
+    .edu-item p { font-size: 0.82rem; color: var(--gray); }
+
+    /* INITIATIVES */
+    .initiatives { display: flex; flex-direction: column; gap: 0.6rem; }
+    .initiative { display: flex; gap: 1rem; align-items: baseline; }
+    .init-year { font-size: 0.78rem; font-weight: 800; color: var(--blue); min-width: 36px; }
+    .init-text { font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 2rem; color: var(--gray); font-size: 0.8rem; }
+
+    @media (max-width: 700px) {
+      .exp-cols-header, .exp-cols { grid-template-columns: 1fr; }
+      .exp-col.left { border-right: none; border-bottom: 2px solid var(--border-color); }
+      .edu-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2rem; }
+      .stats { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">SRI HARSHA</span>
+  <ul>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work Profile</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Sri Harsha</h1>
+      <div class="title">SOFTWARE ENGINEERING ARCHITECT</div>
+      <div class="contact">+91 9880122928 &nbsp;|&nbsp; reach.sriharsha@gmail.com &nbsp;|&nbsp; Bengaluru – 560077</div>
+      <div class="contact" style="margin-top:0.4rem;">
+        <a href="https://www.linkedin.com/in/sri-harsha-52445811" style="color:var(--lightblue)">LinkedIn</a> &nbsp;|&nbsp;
+        <a href="https://github.com/reachsriharsha" style="color:var(--lightblue)">GitHub</a>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">20+</div><div class="lbl">Years Experience</div></div>
+      <div class="stat"><div class="num">1</div><div class="lbl">US Patent</div></div>
+      <div class="stat"><div class="num">3B</div><div class="lbl">Events/Hour</div></div>
+      <div class="stat"><div class="num">3×</div><div class="lbl">0 to Market</div></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- SUMMARY -->
+  <section class="section" id="summary">
+    <div class="section-title">Professional Summary</div>
+    <ul class="summary-list">
+      <li>Highly accomplished professional with 20+ years in product development, specializing in telecommunications and AI/ML.</li>
+      <li>Currently driving strategic adoption of AI applications and Agentic technologies within the organization.</li>
+      <li>Experience building full-stack AI/LLM/ML infrastructure and application solutions with AIOps approach.</li>
+      <li>Expert in adopting open-source into enterprise solutions — accelerating development and achieving cost optimization.</li>
+      <li>Extensive expertise in cloud-native, microservices-based systems architecture and delivery.</li>
+      <li>Pioneered CI/CD, observability platforms, and automated test frameworks well before industry standardization.</li>
+      <li>Proficiency with agentic coding tools: GitHub Copilot, Windsurf, Cursor, Claude Code — aware of merits and limitations across dev-to-deployment stages.</li>
+    </ul>
+  </section>
+
+  <!-- TWO-COLUMN EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="section-title">Engineering Experience — Two Eras</div>
+
+    <div class="exp-cols-header">
+      <div class="col-hdr left">
+        <h3>PRE-AGENTIC ERA</h3>
+        <p>Deep Systems &amp; Telecom Engineering (2004–2021)</p>
+      </div>
+      <div class="col-hdr right">
+        <h3>AGENTIC ERA</h3>
+        <p>AI/LLM Architect &amp; Agentic Development (2021–Present)</p>
+      </div>
+    </div>
+
+    <div class="exp-cols">
+      <div class="exp-col left">
+        <ul>
+          <li>20+ years deep expertise in C/C++, Golang, Python across telecom &amp; systems programming</li>
+          <li>World's first commercial 3GPP Femto Gateway (HNbGW) for SFR, France at Nokia</li>
+          <li>FCAPS management for 60,000 concurrent Femto APs with 99.999% availability</li>
+          <li>Led Agile transformation for 120-member cross-functional team at Nokia</li>
+          <li>Pioneered CI/CD before Jenkins: 5,000+ test cases in 3 hours using Perl/Expect (2013)</li>
+          <li>Health Monitor Console prototype predating Prometheus/Grafana (2012)</li>
+          <li>TAC leadership for Jio — world's first greenfield all-IP 4G/LTE network at Samsung</li>
+          <li>Managed KPIs for 100,000+ eNodeBs</li>
+          <li>5G-NSA solution on MME/PGW — world's first 5G-NSA deployment at T-Mobile (Cisco)</li>
+          <li>5G SMF QoS Modeling, SMF-UPF and SMF-CHF interfaces at Cisco</li>
+          <li>S2a (SaMOG) Wi-Fi Offload gateway and MPTCP prototype on DPDK (Cisco)</li>
+          <li>P4 programming (Intel Tofino) processing Terabits/second for network analytics</li>
+          <li>Ribbon Analytics: 3B events/hour, 2.5M customers, full 5G stack monitoring at Airtel India</li>
+          <li>Feature Database and OTA updates for Motorola P2K Platform (2004–2008)</li>
+          <li>US Patent: US011350319B2 — Optimized QoS Enforcement for Inter-RAT Handovers</li>
         </ul>
       </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <h1>Sri Harsha</h1>
-        <div class="title">SOFTWARE ENGINEERING ARCHITECT</div>
-
-        <div class="contact-info">
-          <div class="item">
-            <svg
-              class="icon"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M20 15.5c-1.2 0-2.4-.2-3.5-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1z"
-              />
-            </svg>
-            <span>+91 9880122928</span>
-          </div>
-          <div class="item">
-            <svg
-              class="icon"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-              />
-            </svg>
-            <span>reach.sriharsha@gmail.com</span>
-          </div>
-          <div class="item">
-            <svg
-              class="icon"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-              />
-            </svg>
-            <span>Bengaluru - 560077</span>
-          </div>
-        </div>
-
-        <div class="social-links">
-          <a
-            href="https://www.linkedin.com/in/sri-harsha-52445811"
-            target="_blank"
-          >
-            <svg
-              class="icon"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"
-              />
-            </svg>
-            LinkedIn
-          </a>
-          <a href="https://github.com/reachsriharsha" target="_blank">
-            <svg
-              class="icon"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"
-              />
-            </svg>
-            GitHub
-          </a>
-        </div>
-
-        <a
-          href="latest/Sri%20Harsha_Resume.pdf"
-          class="pdf-download"
-          download
-          target="_blank"
-        >
-          📄 Download Resume PDF
-        </a>
+      <div class="exp-col right">
+        <ul>
+          <li>Spec-Based &amp; Test-Driven Development: Architect-grade FSD/DSD → Claude Code/Copilot/Codex pipelines</li>
+          <li>Rich experience authoring PRDs, FSDs, DSDs — now paired with AI agents for 10× delivery speed</li>
+          <li>Pragmatic orchestration: spec → agentic stub → TDD loops with Copilot, Windsurf, Cursor, Claude Code</li>
+          <li>LLM Application Development: RAG, classification, sentiment analysis, fine-tuning, prompt engineering</li>
+          <li>On-premises LLM deployments with NVIDIA M60/A100/H100/L40S GPUs — enterprise data sovereignty</li>
+          <li>RFx Responder: agentic AI reduced sales first response from months to days; 75%→87% accuracy</li>
+          <li>RAG Chatbot: 100+ GB data, 10M+ tokens served, $100K+ annual savings for 1,000s of users</li>
+          <li>Fine-tuning with Unsloth, LoRA, QLoRA, RLHF, RLAI — custom LLMs and SLMs for task-specific apps</li>
+          <li>Acumen AI Cluster: 5-node K8s, 12 GPUs (8×L40S + 4×Tesla M60), 230 GB VRAM, 192 virtual GPU slices</li>
+          <li>Acumen AI Platform: self-service FastAPI + Celery + Flask + MCP Servers on distributed K8s</li>
+          <li>Langflow/n8n agentic workflow builder — low-code AI for non-programmers</li>
+          <li>AI/ML Steering Committee member — guiding enterprise-wide GenAI roadmap and adoption</li>
+          <li>Introduced and drove org-wide adoption of Codeium, Windsurf, Cursor</li>
+          <li>Moderated internal AI/ML forum accelerating GenAI adoption across org</li>
+          <li>LLM Observability: Arize-Phoenix, Langfuse — tracing, token tracking, active fine-tuning feedback loop</li>
+          <li>eBPF kernel-level monitoring for enhanced network product capabilities</li>
+        </ul>
       </div>
-    </section>
+    </div>
 
-    <!-- Stats Bar -->
-    <section class="stats-bar">
-      <div class="container" style="display: contents">
-        <div class="stat-item">
-          <div class="number">20+</div>
-          <div class="label">Years Experience</div>
-        </div>
-        <div class="stat-item">
-          <div class="number">1</div>
-          <div class="label">US Patent</div>
-        </div>
-        <div class="stat-item">
-          <div class="number">3B</div>
-          <div class="label">Events/Hour Processed</div>
-        </div>
-        <div class="stat-item">
-          <div class="number">3x</div>
-          <div class="label">Products 0 to Market</div>
-        </div>
+    <div class="callout">
+      <h4>🎯 The Agentic Advantage</h4>
+      <p>As an architect with hands-on experience writing Feature Specification Documents (FSDs) and Design Specification Documents (DSDs), I bring a unique edge: I translate rigorous, spec-based engineering directly into agentic workflows. Pairing architect-grade PRD/FSD authoring with Claude Code, GitHub Copilot, and Codex — and enforcing Test-Driven Development throughout — I deliver production-grade systems at dramatically accelerated timelines. The depth of my pre-agentic telecom and systems engineering grounds every AI-assisted decision in real-world architecture principles.</p>
+    </div>
+  </section>
+
+  <!-- WORK PROFILE -->
+  <section class="section" id="work">
+    <div class="section-title">Work Profile</div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Ribbon Communications</span>
+        <span style="color:var(--border-color)">|</span>
+        <span class="job-title">System Architecture Architect, Ribbon Research Labs</span>
+        <span class="job-dates">2021 – Present</span>
       </div>
-    </section>
+      <ul class="job-list">
+        <li>Architected analytics systems processing 3B events/hour; designed 5G VoNR analytics for operator network visibility.</li>
+        <li>Pioneered on-premises LLM deployments (NVIDIA A100/H100/L40S); built RAG chatbot serving 10M+ tokens, $100K+ savings.</li>
+        <li>Engineered RFx Responder with agentic AI — reduced sales first response from months to days; accuracy 75%→87%.</li>
+        <li>Built Acumen AI Cluster (5-node K8s, 12 GPUs, 230 GB VRAM) and Acumen AI Platform (FastAPI + Celery + MCP Servers).</li>
+        <li>Fine-tuned LLMs using Unsloth/LoRA/QLoRA/RLHF; deployed Langflow for low-code agentic workflow democratization.</li>
+        <li>AI/ML Steering Committee member; introduced Codeium, Windsurf, Cursor across org; moderated internal AI/ML forum.</li>
+      </ul>
+    </div>
 
-    <!-- Professional Summary -->
-    <section id="summary">
-      <div class="container">
-        <h2>Professional Summary</h2>
-        <div class="summary-card">
-          <ul class="summary-list">
-            <li>
-              Highly accomplished and self-motivated professional with over 20
-              years of experience in product development, specializing in
-              telecommunications and AI/ML domain.
-            </li>
-            <li>
-              Proficiency with Agentic coding tools like Github Co-pilot,
-              windsurf and aware of limitation, merits of them and how to use
-              them in various stages of software development to deployment.
-            </li>
-            <li>
-              Demonstrated aptitude for rapid learning and effective application
-              of new technologies within enterprise environments.
-            </li>
-            <li>
-              Currently driving the strategic adoption of AI applications and
-              Agentic technologies within the organization.
-            </li>
-            <li>
-              Experience in building full stack AI/LLM/ML infrastructure and
-              application solution with AIOps approach.
-            </li>
-            <li>
-              Expertise in adopting open-source applications into enterprise
-              solutions, which accelerates product development and achieves cost
-              optimization.
-            </li>
-            <li>
-              Extensive expertise in the design and development of cloud-native,
-              microservices-based systems.
-            </li>
-            <li>
-              Engineered the S2a (SaMOG) Wi-Fi Offload gateway solution with
-              various features.
-            </li>
-            <li>
-              Architected and implemented 5G-NSA solutions for Cisco MME/PGW for
-              world's first 5G-NSA deployment at T-Mobile.
-            </li>
-            <li>
-              Led the design and development of policy and user plane management
-              functionalities for Cisco's 5G SMF solution. Implemented 5G QoS
-              modeling within the Cisco 5G SMF.
-            </li>
-            <li>
-              Provided critical leadership to the Technical Assistance Center
-              (TAC) team for Jio, supporting the world's first greenfield all-IP
-              4G/LTE network deployment.
-            </li>
-            <li>
-              Pioneered the development to deployment of the first
-              3GPP-compliant HNbGW for SFR, France.
-            </li>
-          </ul>
-        </div>
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Cisco Systems India Pvt Limited</span>
+        <span style="color:var(--border-color)">|</span>
+        <span class="job-title">Software Engineer</span>
+        <span class="job-dates">2015 – 2021</span>
       </div>
-    </section>
+      <ul class="job-list">
+        <li>Architected 5G-NSA solution on MME/PGW for world's first 5G-NSA deployment at T-Mobile.</li>
+        <li>Owned QoS Modeling in Cisco's industry-first Cloud Native Standalone 5G Core (SMF), SMF-UPF and SMF-CHF interfaces.</li>
+        <li>Developed S2a (SaMOG) Wi-Fi Offload gateway features; prototyped MPTCP on DPDK for high-throughput networking.</li>
+      </ul>
+    </div>
 
-    <!-- Skills -->
-    <section id="skills">
-      <div class="container">
-        <h2>Skills & Tech Stack</h2>
-        <div class="skills-grid">
-          <div class="skill-category">
-            <h3>Programming Languages</h3>
-            <div class="skill-tags">
-              <span class="tag">C/C++</span>
-              <span class="tag">Python</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">Golang</span>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3>AI/ML & Data Engineering</h3>
-            <div class="skill-tags">
-              <span class="tag green">LLMs</span>
-              <span class="tag green">SLMs</span>
-              <span class="tag green">Transformers</span>
-              <span class="tag green">Vector DB</span>
-              <span class="tag green">HuggingFace</span>
-              <span class="tag green">Ollama</span>
-              <span class="tag green">Langflow</span>
-              <span class="tag green">LangGraph</span>
-              <span class="tag green">LangChain</span>
-              <span class="tag green">LlamaIndex</span>
-              <span class="tag green">Langfuse</span>
-              <span class="tag green">AIOps</span>
-              <span class="tag green">MLOps</span>
-              <span class="tag green">OpenAI</span>
-              <span class="tag green">TTS</span>
-              <span class="tag green">STT</span>
-              <span class="tag green">Streamlit</span>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3>AI/ML Frameworks</h3>
-            <div class="skill-tags">
-              <span class="tag purple">PyTorch</span>
-              <span class="tag purple">Langflow</span>
-              <span class="tag purple">n8n</span>
-              <span class="tag purple">RagFlow</span>
-              <span class="tag purple">Dify</span>
-              <span class="tag purple">vLLM</span>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3>Pre & Post Training</h3>
-            <div class="skill-tags">
-              <span class="tag orange">Fine-tuning Dataset Creation</span>
-              <span class="tag orange">Unsloth Fine-tuning</span>
-              <span class="tag orange">LoRA</span>
-              <span class="tag orange">QLoRA</span>
-              <span class="tag orange">RLHF</span>
-              <span class="tag orange">Custom LLMs</span>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3>Cloud & Infrastructure</h3>
-            <div class="skill-tags">
-              <span class="tag">Kubernetes</span>
-              <span class="tag">Docker</span>
-              <span class="tag">Microservices</span>
-              <span class="tag">gRPC</span>
-              <span class="tag">Protobuf</span>
-              <span class="tag">REST APIs</span>
-              <span class="tag">DevOps</span>
-              <span class="tag">Git</span>
-              <span class="tag">OpenTracing</span>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3>Hyper Scalers</h3>
-            <div class="skill-tags">
-              <span class="tag yellow">AWS Bedrock</span>
-              <span class="tag yellow">GCP</span>
-              <span class="tag yellow">Azure</span>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3>Data Technologies</h3>
-            <div class="skill-tags">
-              <span class="tag">Hadoop</span>
-              <span class="tag">Parquet</span>
-              <span class="tag">ClickHouse</span>
-              <span class="tag">Redis</span>
-              <span class="tag">PostgreSQL</span>
-              <span class="tag">Milvus</span>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3>Monitoring & Observability</h3>
-            <div class="skill-tags">
-              <span class="tag">Prometheus</span>
-              <span class="tag">Grafana</span>
-              <span class="tag">Blackbox</span>
-              <span class="tag">Arize Phoenix</span>
-              <span class="tag">Langsmith</span>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3>Networking</h3>
-            <div class="skill-tags">
-              <span class="tag">Linux/Networking</span>
-              <span class="tag">P4 Programming</span>
-              <span class="tag">eBPF</span>
-              <span class="tag">DPDK</span>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3>3GPP Telecom</h3>
-            <div class="skill-tags">
-              <span class="tag">3G</span>
-              <span class="tag">4G/LTE</span>
-              <span class="tag">5G</span>
-              <span class="tag">RESTful Interfaces</span>
-              <span class="tag">VoLTE</span>
-              <span class="tag">VoNR</span>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3>Full Stack Development</h3>
-            <div class="skill-tags">
-              <span class="tag">Python Backend</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">Flask</span>
-              <span class="tag">Celery</span>
-              <span class="tag">PoC/MVP Development</span>
-            </div>
-          </div>
-        </div>
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Samsung Research Institute</span>
+        <span style="color:var(--border-color)">|</span>
+        <span class="job-title">Chief Engineer</span>
+        <span class="job-dates">2014 – 2015</span>
       </div>
-    </section>
+      <ul class="job-list">
+        <li>Led TAC team for Jio — world's first greenfield all-IP 4G/LTE network; managed KPIs for 100,000+ eNodeBs.</li>
+      </ul>
+    </div>
 
-    <!-- Experience -->
-    <section id="experience">
-      <div class="container">
-        <h2>Work Experience</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-card">
-              <h3>Ribbon Communications</h3>
-              <div class="role">
-                System Architecture Architect, Ribbon Research Labs
-              </div>
-              <div class="period">2021 - Present</div>
-              <p><strong>Technical Capabilities:</strong></p>
-              <ul>
-                <li>
-                  Architected high-performance systems processing 3 billion
-                  events hourly for enterprise-scale analytics infrastructure
-                </li>
-                <li>
-                  Designed Network Analytics system to scale for 5G VoNR
-                  analytics providing visibility into operator's mobile networks
-                </li>
-                <li>
-                  Pioneered P4 programming and eBPF kernel-level monitoring
-                  integration to enhance product capabilities
-                </li>
-                <li>
-                  Developed LLM applications using RAG, document classification,
-                  sentiment analysis, fine-tuning, and prompt engineering
-                </li>
-                <li>
-                  Directed on-premises LLM deployments with NVIDIA M60, A100,
-                  H100, and L40S GPUs enabling data sovereignty
-                </li>
-                <li>
-                  Engineered AI-powered RFC/RFx response system using agentic
-                  architecture, reducing sales response time from months to days
-                </li>
-                <li>
-                  Implemented AI chatbot solutions (100+ GB data) saving $100K+
-                  annually, serving 1000s of users with 10M+ tokens
-                </li>
-                <li>
-                  Fine-tuned models using Unsloth and LoRA techniques, creating
-                  custom quantized LLMs for task-specific applications
-                </li>
-                <li>
-                  Implemented Langflow low-code/no-code agentic frameworks to
-                  democratize AI development
-                </li>
-                <li>
-                  Developed self-service AI Kubernetes cluster across
-                  heterogeneous GPU distributed hardware
-                </li>
-                <li>
-                  Scaled development and test optimization using agentic coding
-                  tools across multiple teams
-                </li>
-              </ul>
-              <p style="margin-top: 1.5rem">
-                <strong>Management & Strategic Skills:</strong>
-              </p>
-              <ul>
-                <li>
-                  Spearheaded development of next-gen telecommunications
-                  products driving core technology innovation
-                </li>
-                <li>
-                  Led strategic planning of 5G analytics solutions including
-                  simulator and hardware finalization
-                </li>
-                <li>
-                  Conducted market analysis, competitive intelligence, product
-                  viability assessments, and MVP definition
-                </li>
-                <li>
-                  Served as AI/ML steering committee member, guiding
-                  enterprise-wide AI initiatives and roadmaps
-                </li>
-                <li>
-                  Introduced new technologies (Codeium, Windsurf, Cursor)
-                  driving org-wide adoption
-                </li>
-                <li>
-                  Collaborated cross-functionally with clients, PLM, sales
-                  teams, and partners to develop tailored solutions
-                </li>
-                <li>Delivered PoCs and MVPs for customer AI/ML requirements</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-card">
-              <h3>Cisco Systems India Pvt Limited</h3>
-              <div class="role">Software Engineer</div>
-              <div class="period">2015 - 2021</div>
-              <ul>
-                <li>
-                  Developed WiFi Gateways (S2a/SaMOG) with comprehensive feature
-                  set for seamless Wi-Fi offload
-                </li>
-                <li>
-                  Created MPTCP prototype implementation using DPDK for
-                  high-performance networking
-                </li>
-                <li>
-                  Architected 5G-NSA solutions on MME/PGW for world's first
-                  5G-NSA deployment at T-Mobile
-                </li>
-                <li>
-                  Led 5G SMF development including QoS Modelling, SMF-UPF, and
-                  SMF-CHF communication protocols
-                </li>
-                <li>
-                  Implemented policy and user plane management functionalities
-                  for Cisco's 5G SMF solution
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-card">
-              <h3>Samsung Research Institute</h3>
-              <div class="role">Chief Engineer</div>
-              <div class="period">2014 - 2015</div>
-              <ul>
-                <li>
-                  Led TAC team for Jio supporting world's first greenfield
-                  all-IP 4G/LTE network deployment
-                </li>
-                <li>
-                  Handled complex OAM issues across massive network
-                  infrastructure
-                </li>
-                <li>
-                  Managed KPIs for 100,000+ eNodeBs ensuring optimal network
-                  performance
-                </li>
-                <li>
-                  Provided critical technical leadership during rapid deployment
-                  phase
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-card">
-              <h3>Nokia Solutions & Networks</h3>
-              <div class="role">Product Architect</div>
-              <div class="period">2008 - 2014</div>
-              <ul>
-                <li>
-                  Architected and delivered first commercial 3GPP-compliant
-                  Femto Gateway for SFR, France
-                </li>
-                <li>
-                  Led Agile transformation across 120-member distributed team
-                  improving delivery efficiency
-                </li>
-                <li>
-                  Built CI/CD infrastructure executing 5,000+ test cases in 3
-                  hours
-                </li>
-                <li>
-                  Designed FCAPS management systems handling 60,000 concurrent
-                  connections with 99.999% availability
-                </li>
-                <li>
-                  Pioneered automated testing frameworks reducing regression
-                  cycles significantly
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-card">
-              <h3>Motorola India Pvt Limited</h3>
-              <div class="role">Software Engineer</div>
-              <div class="period">2004 - 2008</div>
-              <ul>
-                <li>
-                  Developed Feature Database for P2K Platform enabling flexible
-                  product configuration
-                </li>
-                <li>
-                  Automated systems achieving 6X scaling improvement in
-                  deployment efficiency
-                </li>
-                <li>
-                  Implemented Over the Air flex file update mechanisms for
-                  remote device management
-                </li>
-                <li>
-                  Contributed to mobile handset platform development and feature
-                  management
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Nokia Solutions &amp; Networks</span>
+        <span style="color:var(--border-color)">|</span>
+        <span class="job-title">Product Architect</span>
+        <span class="job-dates">2008 – 2014</span>
       </div>
-    </section>
+      <ul class="job-list">
+        <li>Architected and delivered world's first commercial 3GPP Femto Gateway (HNbGW) for SFR, France.</li>
+        <li>FCAPS management for 60,000 concurrent Femto APs with 99.999% availability. Led Agile transformation for 120-member team.</li>
+        <li>Pioneered CI/CD before Jenkins: 5,000+ automated test cases in 3-hour window (2013). Health Monitor Console predating Prometheus/Grafana.</li>
+      </ul>
+    </div>
 
-    <!-- Projects Showcase -->
-    <section id="projects">
-      <div class="container">
-        <h2>Featured Projects</h2>
-        <div class="projects-grid">
-          <div class="project-card">
-            <h3>RAG Chatbot</h3>
-            <p>
-              Production-grade AI chatbot serving 1000s of users with advanced
-              retrieval capabilities and multi-format document processing.
-            </p>
-            <ul>
-              <li>Data Ingestion: PDF, DOCX, XLSX, HTML, PPT via LangChain</li>
-              <li>
-                Vector Database: Milvus with L2/Cosine similarity, IVF_FLAT
-                indexing
-              </li>
-              <li>
-                Embedding Pipeline: HuggingFace BGE models for semantic search
-              </li>
-              <li>
-                Retrieval Performance: 92% hit rate with re-ranking optimization
-              </li>
-              <li>
-                LLM Orchestration: Llama, Gemma, Phi, GPT-OSS, Mistral via
-                Ollama/vLLM
-              </li>
-              <li>Observability: Arize-Phoenix and Langfuse for monitoring</li>
-            </ul>
-            <span class="project-badge">PRODUCTION</span>
-          </div>
-
-          <div class="project-card">
-            <h3>Acumen AI Cluster</h3>
-            <p>
-              Enterprise-grade NVIDIA GPU Kubernetes cluster providing
-              self-service AI/ML infrastructure with massive compute capacity.
-            </p>
-            <ul>
-              <li>5-Node K8s cluster on Ubuntu 22.04/Debian with Calico CNI</li>
-              <li>
-                12 Physical NVIDIA GPUs: 8x L40S + 4x Tesla M60 (230 GB VRAM)
-              </li>
-              <li>
-                192 Virtual GPU slices using NVIDIA time-slicing (16x
-                oversubscription)
-              </li>
-              <li>440 CPU Cores, 1.4 TB RAM, 12+ TB NVMe storage</li>
-              <li>
-                Production AI/ML Stack: Ollama, vLLM, Jupyter, Milvus, Langfuse
-              </li>
-            </ul>
-            <span class="project-badge">INFRASTRUCTURE</span>
-          </div>
-
-          <div class="project-card">
-            <h3>Acumen AI Platform</h3>
-            <p>
-              Self-serving AI platform enabling teams to build and deploy AI
-              solutions with low-code/no-code capabilities.
-            </p>
-            <ul>
-              <li>Python FastAPI Backend for high-performance API services</li>
-              <li>Celery-based distributed workload management</li>
-              <li>Flask-based frontend for user interaction</li>
-              <li>MCP Servers for model serving and orchestration</li>
-              <li>Integrated with Acumen AI Cluster for compute resources</li>
-            </ul>
-            <span class="project-badge">PLATFORM</span>
-          </div>
-
-          <div class="project-card">
-            <h3>RFx Responder</h3>
-            <p>
-              AI-powered sales questionnaire automation tool dramatically
-              reducing response times from months to days.
-            </p>
-            <ul>
-              <li>Handles RFP, RFI, RFQ, DDQ questionnaires</li>
-              <li>Accuracy improvement: 75% → 87% through fine-tuning</li>
-              <li>Response time: Days instead of weeks/months</li>
-              <li>JavaScript chart libraries for statistics visualization</li>
-              <li>Agentic architecture for intelligent response generation</li>
-            </ul>
-            <span class="project-badge">SALES TOOL</span>
-          </div>
-
-          <div class="project-card">
-            <h3>Fine-Tuning LLMs Pipeline</h3>
-            <p>
-              Automated end-to-end pipeline for creating custom fine-tuned
-              language models for enterprise applications.
-            </p>
-            <ul>
-              <li>Dataset generation using synthetic-data-kit</li>
-              <li>Automated data cleaning and quality validation</li>
-              <li>HuggingFace dataset format conversion</li>
-              <li>Quantization configuration (4-bit, 8-bit)</li>
-              <li>LoRA, QLoRA, RLHF, RLAI techniques</li>
-              <li>Model evaluation and deployment automation</li>
-            </ul>
-            <span class="project-badge">ML OPS</span>
-          </div>
-
-          <div class="project-card">
-            <h3>Ribbon Analytics</h3>
-            <p>
-              Big-data analytics platform processing 3 billion events/hour for
-              2.5M customers deployed at Airtel India.
-            </p>
-            <ul>
-              <li>FraudProtect, RoboProtect, and VoLTE analysis modules</li>
-              <li>
-                Full 5G stack support: AMF, AUSF, SMF, gNodeB, UPF, PCF, UDM,
-                CHF, NRF, NSSF, SCP
-              </li>
-              <li>Real-time processing: 3B events/hour capacity</li>
-              <li>Mobile INband Telemetry (MINT) with Intel Tofino switches</li>
-              <li>P4 programming for programmable data plane</li>
-            </ul>
-            <span class="project-badge">BIG DATA</span>
-          </div>
-        </div>
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Motorola India Pvt Limited</span>
+        <span style="color:var(--border-color)">|</span>
+        <span class="job-title">Software Engineer</span>
+        <span class="job-dates">2004 – 2008</span>
       </div>
-    </section>
+      <ul class="job-list">
+        <li>Developed Feature Database for P2K Platform; implemented OTA flex file updates; automated systems scaling 6X.</li>
+      </ul>
+    </div>
+  </section>
 
-    <!-- Education & Patents -->
-    <section id="education">
-      <div class="container">
-        <h2>Education & Patents</h2>
-        <div class="two-column">
-          <div class="info-card">
-            <h3>Education</h3>
-            <div class="item">
-              <h4>M.S. Software Systems</h4>
-              <p>BITS, Pilani</p>
-              <p>CGPA: 7.26 | Year: 2011</p>
-            </div>
-            <div class="item">
-              <h4>B.E. Information Science</h4>
-              <p>AIT Chickmagluru</p>
-              <p>76% | Year: 2004</p>
-            </div>
-          </div>
-
-          <div class="info-card">
-            <h3>Patents</h3>
-            <div class="item">
-              <h4>US Patent: US011350319B2</h4>
-              <p>
-                <strong>Title:</strong> Optimized Quality of Service Enforcement
-                for Handover Between Different Radio Access Types
-              </p>
-              <p style="margin-top: 0.5rem">
-                Innovative solution for QoS management during inter-RAT
-                handovers in mobile networks.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Initiatives Timeline -->
-        <div class="initiatives-timeline">
-          <h3
-            style="
-              text-align: center;
-              margin-bottom: 2rem;
-              color: var(--accent-purple);
-              font-size: 1.8rem;
-            "
-          >
-            Key Initiatives
-          </h3>
-
-          <div class="initiative-item">
-            <div class="year">2025</div>
-            <div class="content">
-              <h4>AI/ML Solutions Suite</h4>
-              <p>
-                AI/ML chatbot, sentiment analysis, classification, dynamic
-                knowledge articles @ Ribbon
-              </p>
-            </div>
-          </div>
-
-          <div class="initiative-item">
-            <div class="year">2024</div>
-            <div class="content">
-              <h4>RFQ Responder</h4>
-              <p>
-                Sales response automation reducing turnaround from months to
-                days @ Ribbon
-              </p>
-            </div>
-          </div>
-
-          <div class="initiative-item">
-            <div class="year">2021</div>
-            <div class="content">
-              <h4>Next-Gen Analytics for 5G</h4>
-              <p>Analytics platform development using free5gc @ Ribbon</p>
-            </div>
-          </div>
-
-          <div class="initiative-item">
-            <div class="year">2020</div>
-            <div class="content">
-              <h4>Call Flow Sequence Diagrams</h4>
-              <p>Distributed K8s pod call flow visualization @ Cisco</p>
-            </div>
-          </div>
-
-          <div class="initiative-item">
-            <div class="year">2019</div>
-            <div class="content">
-              <h4>Design Thinking Innovation</h4>
-              <p>
-                Cisco Design Thinking training, IEC-5 semifinalist (400+
-                submissions) @ Cisco
-              </p>
-            </div>
-          </div>
-
-          <div class="initiative-item">
-            <div class="year">2013</div>
-            <div class="content">
-              <h4>Handcrafted CI-CD</h4>
-              <p>
-                Built custom CI/CD pipeline before Jenkins using Perl and Expect
-                @ NSN
-              </p>
-            </div>
-          </div>
-
-          <div class="initiative-item">
-            <div class="year">2012</div>
-            <div class="content">
-              <h4>Health Monitor Console</h4>
-              <p>Early prototype predating Prometheus/Grafana @ NSN</p>
-            </div>
-          </div>
-        </div>
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-title">Featured Projects</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h4>RAG Chatbot</h4>
+        <p>Production-grade AI chatbot serving 1,000s of users with 92% retrieval hit rate.</p>
+        <ul>
+          <li>Multi-format ingestion: PDF, DOCX, XLSX, HTML, PPT with Vision LLM image extraction</li>
+          <li>Milvus vector DB, HuggingFace BGE embeddings, re-ranking</li>
+          <li>Dynamic LLM layer: Llama, Gemma, Phi, Mistral via Ollama/vLLM</li>
+          <li>Langfuse observability with active fine-tuning feedback loop</li>
+        </ul>
+        <span class="badge">PRODUCTION</span>
       </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p>&copy; 2025 Sri Harsha. All rights reserved.</p>
+      <div class="project-card">
+        <h4>RFx Responder</h4>
+        <p>Agentic AI tool reducing RFP/RFI/RFQ response time from months to days.</p>
+        <ul>
+          <li>Parallel processing with Celery; simultaneous legacy + custom KB search</li>
+          <li>Accuracy improved 75% → 87% through continuous learning</li>
+          <li>Compliance dashboard with JS chart libraries for one-shot visibility</li>
+        </ul>
+        <span class="badge">SALES TOOL</span>
       </div>
-    </footer>
-  </body>
+      <div class="project-card">
+        <h4>Acumen AI Cluster</h4>
+        <p>Enterprise GPU K8s cluster: 12 GPUs, 230 GB VRAM, 192 virtual GPU slices.</p>
+        <ul>
+          <li>5-node K8s: 8×L40S + 4×Tesla M60, 440 CPU Cores, 1.4 TB RAM</li>
+          <li>NVIDIA time-slicing (16× oversubscription), GPU Operator, CUDA 12.7/12.9</li>
+          <li>Full AI/ML stack: vLLM, Ollama, Jupyter, Milvus, Langfuse</li>
+        </ul>
+        <span class="badge">INFRASTRUCTURE</span>
+      </div>
+      <div class="project-card">
+        <h4>Acumen AI Platform</h4>
+        <p>Self-service AI platform for teams to build and deploy agentic AI solutions.</p>
+        <ul>
+          <li>FastAPI backend + Celery distributed workloads + Flask frontend</li>
+          <li>MCP Servers for model orchestration and external agentic workflows</li>
+          <li>Self-service KB creation, API key management</li>
+        </ul>
+        <span class="badge">PLATFORM</span>
+      </div>
+      <div class="project-card">
+        <h4>LLM Fine-Tuning Pipeline</h4>
+        <p>Automated end-to-end pipeline for custom fine-tuned LLMs at enterprise scale.</p>
+        <ul>
+          <li>Synthetic dataset generation with synthetic-data-kit + local vLLM</li>
+          <li>LoRA, QLoRA, RLHF, RLAI; Unsloth for memory-efficient fine-tuning</li>
+          <li>Auto-deployment to Ollama/vLLM; LLM-analyzed fine-tuning reports</li>
+        </ul>
+        <span class="badge">ML OPS</span>
+      </div>
+      <div class="project-card">
+        <h4>Ribbon Analytics</h4>
+        <p>Big-data analytics processing 3B events/hour for 2.5M customers at Airtel India.</p>
+        <ul>
+          <li>Full 5G stack: AMF, AUSF, SMF, gNodeB, UPF, PCF, UDM, CHF, NRF, NSSF, SCP</li>
+          <li>FraudProtect, RoboProtect, VoLTE/VoNR analysis modules</li>
+          <li>MINT: P4/Intel Tofino processing Terabits/second</li>
+        </ul>
+        <span class="badge">BIG DATA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-title">Skills &amp; Technologies</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>AI/ML &amp; Agentic</h4>
+        <p>LLMs, SLMs, RAG, LoRA, QLoRA, RLHF, Unsloth, vLLM, Ollama, LangChain, LangGraph, LlamaIndex, Langfuse, Langflow, n8n, HuggingFace, Arize-Phoenix</p>
+      </div>
+      <div class="skill-group">
+        <h4>Agentic Coding Tools</h4>
+        <p>Claude Code, GitHub Copilot, Windsurf, Cursor, Codeium — spec-driven TDD workflows integrating PRD/FSD/DSD authoring</p>
+      </div>
+      <div class="skill-group">
+        <h4>Programming</h4>
+        <p>Python, JavaScript, C/C++, Golang. Full-stack: FastAPI, Flask, React. gRPC, Protobuf, REST APIs</p>
+      </div>
+      <div class="skill-group">
+        <h4>Cloud &amp; Infrastructure</h4>
+        <p>Kubernetes, Docker, Microservices, AWS Bedrock, GCP, Azure, Celery, Milvus, Redis, PostgreSQL</p>
+      </div>
+      <div class="skill-group">
+        <h4>Telecom &amp; Networking</h4>
+        <p>3G/4G LTE/5G, VoLTE, VoNR, 5G SMF/MME/PGW/UPF, P4/Tofino, eBPF, DPDK, MPTCP, SaMOG, Femto GW, FCAPS</p>
+      </div>
+      <div class="skill-group">
+        <h4>Monitoring &amp; Observability</h4>
+        <p>Prometheus, Grafana, Arize-Phoenix, Langsmith, Langfuse, Blackbox</p>
+      </div>
+      <div class="skill-group">
+        <h4>Data Engineering</h4>
+        <p>Hadoop, Parquet, ClickHouse, Milvus, Redis, PostgreSQL; Synthetic data pipelines, fine-tuning dataset generation</p>
+      </div>
+      <div class="skill-group">
+        <h4>Pre &amp; Post LLM Training</h4>
+        <p>Fine-tuning dataset creation, Unsloth, LoRA, QLoRA, RLHF, RLAI, quantization (4-bit, 8-bit)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <div class="section-title">Education, Patent &amp; Initiatives</div>
+    <div class="edu-grid" style="margin-bottom:1.5rem;">
+      <div class="edu-item">
+        <h4>M.S. Software Systems — BITS, Pilani</h4>
+        <p>CGPA: 7.26 | 2011</p>
+      </div>
+      <div class="edu-item">
+        <h4>B.E. Information Science — AIT Chickmagluru</h4>
+        <p>76% | 2004</p>
+      </div>
+      <div class="edu-item" style="margin-top:0.8rem;">
+        <h4>US Patent: US011350319B2</h4>
+        <p>Optimized Quality of Service Enforcement for Handover Between Different Radio Access Types</p>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:1rem;">Key Initiatives</div>
+    <div class="initiatives">
+      <div class="initiative"><span class="init-year">2025</span><span class="init-text">AI/ML chatbot, sentiment analysis, classification, dynamic knowledge article generation @ Ribbon</span></div>
+      <div class="initiative"><span class="init-year">2024</span><span class="init-text">RFQ Responder — sales response automation from months to days @ Ribbon</span></div>
+      <div class="initiative"><span class="init-year">2021</span><span class="init-text">Next-gen analytics for 5G using open-source free5gc @ Ribbon</span></div>
+      <div class="initiative"><span class="init-year">2020</span><span class="init-text">Call flow sequence diagram generation from distributed K8s pods @ Cisco</span></div>
+      <div class="initiative"><span class="init-year">2019</span><span class="init-text">Cisco Design Thinking (IEC-5) — semifinalist among 400+ submissions @ Cisco</span></div>
+      <div class="initiative"><span class="init-year">2013</span><span class="init-text">Handcrafted CI/CD system before Jenkins using Perl and Expect @ NSN</span></div>
+      <div class="initiative"><span class="init-year">2012</span><span class="init-text">Health Monitor Console predating Prometheus/Grafana — observability for distributed systems @ NSN</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2025 Sri Harsha. All rights reserved.
+</footer>
+
+</body>
 </html>
