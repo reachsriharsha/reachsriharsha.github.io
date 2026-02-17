@@ -6,26 +6,21 @@
   <title>Sri Harsha – Software Engineering Architect</title>
   <style>
     :root {
-      --navy: #0D1B2A;
-      --blue: #3A86FF;
-      --midblue: #5EA8FF;
-      --lightblue: #8BB8E8;
-      --accent: #F0A030;
-      --dark: #E0E0E0;
-      --gray: #9CA3AF;
-      --lightgray: #1A2332;
-      --white: #111827;
-      --card-bg: #1A2332;
-      --body-bg: #0F1724;
-      --text-primary: #E0E0E0;
-      --text-secondary: #9CA3AF;
-      --border-color: #2A3A50;
+      --navy: #1A3A5C;
+      --blue: #2E6DA4;
+      --midblue: #4A90C4;
+      --lightblue: #D6E8F5;
+      --accent: #E8A020;
+      --dark: #222;
+      --gray: #666;
+      --lightgray: #F5F7FA;
+      --white: #fff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      color: var(--text-primary);
-      background: var(--body-bg);
+      color: var(--dark);
+      background: #f0f4f8;
       font-size: 15px;
       line-height: 1.55;
     }
@@ -62,20 +57,38 @@
     .stat .num { font-size: 2rem; font-weight: 900; color: var(--accent); }
     .stat .lbl { font-size: 0.7rem; letter-spacing: 1px; color: rgba(255,255,255,0.6); }
 
+    /* PDF DOWNLOAD */
+    .hero .pdf-download {
+      display: inline-block;
+      padding: 0.45rem 1.1rem;
+      background: var(--accent);
+      color: var(--navy);
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-top: 0.8rem;
+    }
+    .hero .pdf-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(232, 160, 32, 0.4);
+    }
+
     /* MAIN */
     main { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
 
     /* SECTION */
-    .section { background: var(--card-bg); border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.3); margin-bottom: 2rem; padding: 2rem 2rem 1.5rem; }
+    .section { background: var(--white); border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 2rem; padding: 2rem 2rem 1.5rem; }
     .section-title {
       font-size: 0.78rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--lightblue); border-bottom: 3px solid var(--blue);
+      color: var(--navy); border-bottom: 3px solid var(--blue);
       padding-bottom: 0.5rem; margin-bottom: 1.4rem;
     }
 
     /* SUMMARY */
     .summary-list { list-style: none; }
-    .summary-list li { padding: 0.25rem 0 0.25rem 1.2rem; position: relative; color: var(--text-secondary); }
+    .summary-list li { padding: 0.25rem 0 0.25rem 1.2rem; position: relative; color: #444; }
     .summary-list li::before { content: "▸"; position: absolute; left: 0; color: var(--blue); }
 
     /* ===== TWO-COLUMN EXPERIENCE ===== */
@@ -91,8 +104,8 @@
       padding: 1rem 1.4rem;
       color: var(--white);
     }
-    .col-hdr.left { background: #0D1B2A; }
-    .col-hdr.right { background: #1A3050; }
+    .col-hdr.left { background: var(--navy); }
+    .col-hdr.right { background: var(--blue); }
     .col-hdr h3 { font-size: 0.9rem; letter-spacing: 2px; font-weight: 800; }
     .col-hdr p { font-size: 0.78rem; color: rgba(255,255,255,0.7); margin-top: 0.2rem; }
 
@@ -100,7 +113,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0;
-      border: 1px solid var(--border-color);
+      border: 1px solid #dde7f5;
       border-top: none;
       border-radius: 0 0 8px 8px;
       overflow: hidden;
@@ -108,74 +121,74 @@
     .exp-col {
       padding: 1.2rem 1.4rem;
     }
-    .exp-col.left { border-right: 2px solid var(--border-color); }
+    .exp-col.left { border-right: 2px solid var(--lightblue); }
     .exp-col ul { list-style: none; }
     .exp-col li {
       padding: 0.22rem 0 0.22rem 1.1rem;
       position: relative;
       font-size: 0.85rem;
-      color: var(--text-secondary);
+      color: #3a3a3a;
     }
     .exp-col li::before { content: "▸"; position: absolute; left: 0; color: var(--midblue); font-size: 0.7rem; top: 0.35rem; }
 
     /* AGENTIC ADVANTAGE CALLOUT */
     .callout {
-      background: #1E2A1E;
+      background: #FFF8EC;
       border-left: 5px solid var(--accent);
       border-radius: 0 8px 8px 0;
       padding: 1rem 1.4rem;
       margin-top: 1.2rem;
     }
-    .callout h4 { color: var(--accent); font-size: 0.88rem; margin-bottom: 0.4rem; }
-    .callout p { font-size: 0.85rem; color: var(--text-secondary); }
+    .callout h4 { color: #7a5000; font-size: 0.88rem; margin-bottom: 0.4rem; }
+    .callout p { font-size: 0.85rem; color: #555; }
 
     /* WORK PROFILE */
     .job { margin-bottom: 1.4rem; }
     .job-header { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: baseline; margin-bottom: 0.4rem; }
-    .job-company { font-weight: 800; color: var(--lightblue); font-size: 0.97rem; }
+    .job-company { font-weight: 800; color: var(--navy); font-size: 0.97rem; }
     .job-title { color: var(--blue); font-size: 0.9rem; }
     .job-dates { color: var(--gray); font-size: 0.82rem; margin-left: auto; }
     .job-list { list-style: none; }
-    .job-list li { padding: 0.2rem 0 0.2rem 1.1rem; position: relative; color: var(--text-secondary); font-size: 0.88rem; }
+    .job-list li { padding: 0.2rem 0 0.2rem 1.1rem; position: relative; color: #444; font-size: 0.88rem; }
     .job-list li::before { content: "▸"; position: absolute; left: 0; color: var(--midblue); font-size: 0.7rem; top: 0.35rem; }
 
     /* SKILLS */
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
     .skill-group h4 { font-size: 0.82rem; font-weight: 700; color: var(--blue); margin-bottom: 0.4rem; letter-spacing: 0.5px; }
-    .skill-group p { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.5; }
+    .skill-group p { font-size: 0.83rem; color: #555; line-height: 1.5; }
 
     /* PROJECTS */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
     .project-card {
-      background: #0F1724;
+      background: var(--lightgray);
       border-radius: 8px;
       padding: 1.1rem 1.2rem;
       border-top: 3px solid var(--blue);
     }
-    .project-card h4 { font-size: 0.92rem; color: var(--lightblue); font-weight: 700; margin-bottom: 0.4rem; }
-    .project-card p { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+    .project-card h4 { font-size: 0.92rem; color: var(--navy); font-weight: 700; margin-bottom: 0.4rem; }
+    .project-card p { font-size: 0.82rem; color: #555; margin-bottom: 0.5rem; }
     .project-card ul { list-style: none; }
-    .project-card li { font-size: 0.8rem; color: var(--text-secondary); padding-left: 0.9rem; position: relative; }
+    .project-card li { font-size: 0.8rem; color: #555; padding-left: 0.9rem; position: relative; }
     .project-card li::before { content: "·"; position: absolute; left: 0; color: var(--blue); font-size: 1rem; top: -0.1rem; }
     .badge { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; padding: 0.1rem 0.5rem; border-radius: 3px; background: var(--blue); color: var(--white); margin-top: 0.5rem; }
 
     /* EDUCATION */
     .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-    .edu-item h4 { font-size: 0.9rem; font-weight: 700; color: var(--lightblue); }
+    .edu-item h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); }
     .edu-item p { font-size: 0.82rem; color: var(--gray); }
 
     /* INITIATIVES */
     .initiatives { display: flex; flex-direction: column; gap: 0.6rem; }
     .initiative { display: flex; gap: 1rem; align-items: baseline; }
     .init-year { font-size: 0.78rem; font-weight: 800; color: var(--blue); min-width: 36px; }
-    .init-text { font-size: 0.85rem; color: var(--text-secondary); }
+    .init-text { font-size: 0.85rem; color: #444; }
 
     /* FOOTER */
     footer { text-align: center; padding: 2rem; color: var(--gray); font-size: 0.8rem; }
 
     @media (max-width: 700px) {
       .exp-cols-header, .exp-cols { grid-template-columns: 1fr; }
-      .exp-col.left { border-right: none; border-bottom: 2px solid var(--border-color); }
+      .exp-col.left { border-right: none; border-bottom: 2px solid var(--lightblue); }
       .edu-grid { grid-template-columns: 1fr; }
       .hero h1 { font-size: 2rem; }
       .stats { gap: 1rem; }
@@ -206,6 +219,7 @@
         <a href="https://www.linkedin.com/in/sri-harsha-52445811" style="color:var(--lightblue)">LinkedIn</a> &nbsp;|&nbsp;
         <a href="https://github.com/reachsriharsha" style="color:var(--lightblue)">GitHub</a>
       </div>
+      <a href="latest/Sri%20Harsha_Resume.pdf" class="pdf-download" download target="_blank">📄 Download Resume PDF</a>
     </div>
     <div class="stats">
       <div class="stat"><div class="num">20+</div><div class="lbl">Years Experience</div></div>
@@ -302,7 +316,7 @@
     <div class="job">
       <div class="job-header">
         <span class="job-company">Ribbon Communications</span>
-        <span style="color:var(--border-color)">|</span>
+        <span style="color:#aaa">|</span>
         <span class="job-title">System Architecture Architect, Ribbon Research Labs</span>
         <span class="job-dates">2021 – Present</span>
       </div>
@@ -319,7 +333,7 @@
     <div class="job">
       <div class="job-header">
         <span class="job-company">Cisco Systems India Pvt Limited</span>
-        <span style="color:var(--border-color)">|</span>
+        <span style="color:#aaa">|</span>
         <span class="job-title">Software Engineer</span>
         <span class="job-dates">2015 – 2021</span>
       </div>
@@ -333,7 +347,7 @@
     <div class="job">
       <div class="job-header">
         <span class="job-company">Samsung Research Institute</span>
-        <span style="color:var(--border-color)">|</span>
+        <span style="color:#aaa">|</span>
         <span class="job-title">Chief Engineer</span>
         <span class="job-dates">2014 – 2015</span>
       </div>
@@ -345,7 +359,7 @@
     <div class="job">
       <div class="job-header">
         <span class="job-company">Nokia Solutions &amp; Networks</span>
-        <span style="color:var(--border-color)">|</span>
+        <span style="color:#aaa">|</span>
         <span class="job-title">Product Architect</span>
         <span class="job-dates">2008 – 2014</span>
       </div>
@@ -359,7 +373,7 @@
     <div class="job">
       <div class="job-header">
         <span class="job-company">Motorola India Pvt Limited</span>
-        <span style="color:var(--border-color)">|</span>
+        <span style="color:#aaa">|</span>
         <span class="job-title">Software Engineer</span>
         <span class="job-dates">2004 – 2008</span>
       </div>
