@@ -834,6 +834,68 @@
         </div>
       </div>
     </div>
+
+    <!-- CORE CAPABILITIES CONCENTRIC DIAGRAM -->
+    <div class="diagram-container">
+      <div class="diagram-title">Core Capabilities &#8212; Inner Core to Outer Core</div>
+      <div style="display:flex;justify-content:center;padding:10px 0;">
+        <svg viewBox="0 0 760 760" width="700" height="700" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;">
+          <defs>
+            <radialGradient id="outerGrad" cx="50%" cy="50%" r="50%"><stop offset="60%" stop-color="transparent"/><stop offset="100%" stop-color="rgba(236,72,153,0.10)"/></radialGradient>
+            <radialGradient id="midGrad" cx="50%" cy="50%" r="50%"><stop offset="55%" stop-color="transparent"/><stop offset="100%" stop-color="rgba(59,130,246,0.12)"/></radialGradient>
+            <radialGradient id="innerGrad" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(16,185,129,0.18)"/><stop offset="100%" stop-color="rgba(16,185,129,0.06)"/></radialGradient>
+          </defs>
+
+          <!-- Outer Ring: AI / Agentic (Rose/Pink) -->
+          <circle cx="380" cy="380" r="370" fill="url(#outerGrad)" stroke="#ec4899" stroke-width="2.5" stroke-opacity="0.35"/>
+          <!-- Middle Ring: Cloud & Telecom (Blue) -->
+          <circle cx="380" cy="380" r="235" fill="url(#midGrad)" stroke="#3b82f6" stroke-width="2.5" stroke-opacity="0.4"/>
+          <!-- Inner Core: Systems DNA (Green) -->
+          <circle cx="380" cy="380" r="115" fill="url(#innerGrad)" stroke="#10b981" stroke-width="2.5" stroke-opacity="0.5"/>
+
+          <!-- Inner Core Items -->
+          <text x="380" y="345" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700" font-family="Inter,sans-serif">C/C++ (20 yr)</text>
+          <text x="380" y="362" text-anchor="middle" fill="#6ee7b7" font-size="9.5" font-family="Inter,sans-serif">DPDK</text>
+          <text x="380" y="378" text-anchor="middle" fill="#6ee7b7" font-size="9.5" font-family="Inter,sans-serif">Linux Internals</text>
+          <text x="380" y="394" text-anchor="middle" fill="#6ee7b7" font-size="9.5" font-family="Inter,sans-serif">Multi-core / Threads</text>
+          <text x="380" y="410" text-anchor="middle" fill="#6ee7b7" font-size="9.5" font-family="Inter,sans-serif">System Architecture</text>
+          <text x="380" y="426" text-anchor="middle" fill="#6ee7b7" font-size="9.5" font-family="Inter,sans-serif">Product Vision</text>
+
+          <!-- Middle Ring Items -->
+          <text x="380" y="170" text-anchor="middle" fill="#93c5fd" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">Kubernetes / Docker</text>
+          <text x="570" y="240" text-anchor="middle" fill="#93c5fd" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">5G Core (SMF/AMF/UPF)</text>
+          <text x="190" y="240" text-anchor="middle" fill="#93c5fd" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">4G/LTE (MME/PGW)</text>
+          <text x="570" y="530" text-anchor="middle" fill="#93c5fd" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">CI/CD Pioneer</text>
+          <text x="190" y="530" text-anchor="middle" fill="#93c5fd" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">IMS (CSCF/HSS)</text>
+          <text x="380" y="595" text-anchor="middle" fill="#93c5fd" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">Cloud-Native Microservices</text>
+          <text x="575" y="385" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600" font-family="Inter,sans-serif">gRPC/Protobuf</text>
+          <text x="185" y="385" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600" font-family="Inter,sans-serif">3GPP/IETF</text>
+
+          <!-- Outer Ring Items -->
+          <text x="380" y="38" text-anchor="middle" fill="#f9a8d4" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">LLM Fine-tuning (LoRA / QLoRA / RLHF)</text>
+          <text x="660" y="120" text-anchor="middle" fill="#f9a8d4" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">RAG Systems (100+GB)</text>
+          <text x="100" y="120" text-anchor="middle" fill="#f9a8d4" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">LangChain / LangGraph</text>
+          <text x="715" y="280" text-anchor="middle" fill="#f9a8d4" font-size="10" font-weight="600" font-family="Inter,sans-serif">MCP Servers</text>
+          <text x="45" y="280" text-anchor="middle" fill="#f9a8d4" font-size="10" font-weight="600" font-family="Inter,sans-serif">Agentic Workflows</text>
+          <text x="715" y="480" text-anchor="middle" fill="#f9a8d4" font-size="10" font-weight="600" font-family="Inter,sans-serif">Prompt Engineering</text>
+          <text x="45" y="480" text-anchor="middle" fill="#f9a8d4" font-size="10" font-weight="600" font-family="Inter,sans-serif">ML Ops / Observability</text>
+          <text x="660" y="640" text-anchor="middle" fill="#f9a8d4" font-size="10" font-weight="600" font-family="Inter,sans-serif">Langflow / LlamaIndex</text>
+          <text x="100" y="640" text-anchor="middle" fill="#f9a8d4" font-size="10" font-weight="600" font-family="Inter,sans-serif">Claude Code / Copilot</text>
+          <text x="380" y="725" text-anchor="middle" fill="#f9a8d4" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">vLLM / Ollama / HuggingFace</text>
+          <text x="380" y="695" text-anchor="middle" fill="#f9a8d4" font-size="10" font-weight="600" font-family="Inter,sans-serif">On-Prem GPU (12 GPUs, 230GB VRAM)</text>
+          <text x="380" y="70" text-anchor="middle" fill="#f9a8d4" font-size="10" font-weight="600" font-family="Inter,sans-serif">Voice Agents / TTS / STT</text>
+
+          <!-- Legend -->
+          <circle cx="175" cy="748" r="6" fill="#10b981" fill-opacity="0.4" stroke="#10b981" stroke-width="1"/>
+          <text x="186" y="752" fill="#6ee7b7" font-size="9" font-family="Inter,sans-serif">Systems DNA (20yr)</text>
+          <circle cx="340" cy="748" r="6" fill="#3b82f6" fill-opacity="0.3" stroke="#3b82f6" stroke-width="1"/>
+          <text x="351" y="752" fill="#93c5fd" font-size="9" font-family="Inter,sans-serif">Cloud &amp; Telecom</text>
+          <circle cx="490" cy="748" r="6" fill="#ec4899" fill-opacity="0.3" stroke="#ec4899" stroke-width="1"/>
+          <text x="501" y="752" fill="#f9a8d4" font-size="9" font-family="Inter,sans-serif">AI / Agentic</text>
+        </svg>
+      </div>
+    </div>
+
   </div>
 </div>
 
