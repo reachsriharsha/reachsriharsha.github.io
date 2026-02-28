@@ -93,6 +93,31 @@
   }
   .stat-card .label { font-size: 0.75rem; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; }
 
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    padding: 14px 32px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: inherit;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(59,130,246,0.3), 0 0 60px rgba(139,92,246,0.15);
+  }
+  .download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(59,130,246,0.5), 0 0 80px rgba(139,92,246,0.25);
+  }
+  .download-btn svg { flex-shrink: 0; }
+
   .tab-nav {
     display: flex;
     gap: 0;
@@ -470,6 +495,10 @@
       <div class="stat-card"><div class="num">1</div><div class="label">US Patent</div></div>
       <div class="stat-card"><div class="num">100x</div><div class="label">Agentic Multiplier</div></div>
     </div>
+    <a href="latest/Sri_Harsha_Resume.pdf" download class="download-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Resume (PDF)
+    </a>
   </div>
 </header>
 
