@@ -1219,5 +1219,19 @@
         </div>
       </div>
     </div>
+    <script>
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // Remove active from all buttons and content panels
+          document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+          document.querySelectorAll(".tab-content").forEach((c) => c.classList.remove("active"));
+
+          // Activate clicked button and matching content panel
+          btn.classList.add("active");
+          const target = document.getElementById("tab-" + btn.dataset.tab);
+          if (target) target.classList.add("active");
+        });
+      });
+    </script>
   </body>
 </html>
