@@ -9,7 +9,7 @@ I help small businesses take the repetitive, error-prone work off their plate �
 No jargon. No expensive software you will never fully use. Just the right tool for your business, set up and explained in a language you are comfortable with — Kannada, Hindi, or English.
 
 Bengaluru, India — on-site in Bengaluru, online anywhere in India
-reach.sriharsha@gmail.com | +91 9880122928
+prosprc@gmail.com | +91 7975256972
 
 ---
 
@@ -119,23 +119,10 @@ If your business is not on this list, it does not matter. If you do something re
 ## How It Works
 
 1. **Talk (free)** — We meet or call for an hour. You explain how things work today. I mostly listen and ask questions.
-2. **Simple plan** — I send a short written plan: what I will do, how long it will take, and a fixed price. No surprises.
+2. **Simple plan** — I send a short written plan: what I will do, how long it will take, and what it will cost. No surprises.
 3. **Start small** — We begin with the one change that gives the biggest relief. You see results within days, not months.
 4. **Build and train** — I set it up, train you and your staff, and adjust based on how it is used in real life.
 5. **Support** — Help is a phone call away. Optional monthly support if you want ongoing changes and improvements.
-
-### Packages
-
-Prices are fixed and agreed upfront. Indicative ranges below; the exact amount is quoted after the health check.
-
-| Package | What you get | Indicative price |
-|---|---|---|
-| **Health Check** | One-hour session and a written list of improvements | Free |
-| **Quick Fix** | One sheet, form, or automation set up and explained (for example, a stock sheet with low-stock alerts) | To be decided |
-| **Business Starter** | 2–4 connected automations across orders, billing, stock, or payments, plus staff training | To be decided |
-| **Custom App** | A small app built for your specific workflow, with training and 1 month of support | Quoted per project |
-| **Monthly Support** | Changes, fixes, new reports, and help for your staff | To be decided per month |
-| **Training Session** | Half-day or full-day session for owners and staff | To be decided |
 
 ---
 
@@ -152,13 +139,11 @@ Prices are fixed and agreed upfront. Indicative ranges below; the exact amount i
 
 ## About Me
 
-I am Sri Harsha, a software architect with more than 22 years of experience. I have built telecom systems that run India's mobile networks, including work on Reliance Jio's 4G network and 5G analytics for Airtel, and I hold a US patent. In recent years I have been building AI systems and training teams to use them.
+I am Sri Harsha, a software architect with more than 22 years of experience at Nokia, Samsung, Cisco, and Ribbon. I have built telecom systems for some of the biggest telecom players in the world, and I hold a US patent. In recent years I have been building AI systems and training teams to use them.
 
 I have also spent many years teaching — training engineers, mentoring university students, and helping non-technical teams like sales use new tools confidently. That is the part I enjoy most: seeing someone go from "I don't understand computers" to "I did this myself."
 
 Small businesses are the backbone of India. Most of them can save hours every week with tools that already exist and cost very little. I want to help them get there.
-
-Full profile: [reachsriharsha.github.io/profile](https://reachsriharsha.github.io/profile/)
 
 ---
 
@@ -188,8 +173,8 @@ Yes. Often the goal is to get clean data to your accountant or billing software 
 
 Send me a WhatsApp message or call. Tell me what your business does and what wastes the most time every day. We will start from there.
 
-**Phone / WhatsApp:** +91 9880122928
-**Email:** reach.sriharsha@gmail.com
+**Phone / WhatsApp:** +91 7975256972
+**Email:** prosprc@gmail.com
 **Location:** Bengaluru — on-site visits in Bengaluru, online anywhere in India
 **Languages:** Kannada, Hindi, English
 
@@ -198,9 +183,8 @@ Send me a WhatsApp message or call. Tell me what your business does and what was
 <!--
 OPEN ITEMS before turning this into the HTML page:
 - Business / brand name (a friendly name may work better for this audience than a personal name)
-- Actual prices in INR for each package
+- Pricing approach (packages removed from the page for now)
 - Availability: weekdays, weekends, evenings; start date
-- Confirm the WhatsApp number is the one to publish
 - 2-3 real or pilot examples ("before / after") once the first clients are done
 - Testimonials from first clients
 - Whether to keep the enterprise AI training offering as a separate page
