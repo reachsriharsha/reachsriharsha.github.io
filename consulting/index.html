@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Digital Help for Small Businesses</title>
+<meta name="description" content="Google Sheets automation, everyday business automation, small custom apps, and practical AI for Indian small businesses. Bengaluru based. Kannada, Hindi, English." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #fbf8f3;
+    --surface: #ffffff;
+    --surface-2: #f3eee5;
+    --text: #1f2a24;
+    --muted: #5b665f;
+    --border: #e4ddd0;
+    --primary: #1f6f4a;
+    --primary-ink: #ffffff;
+    --primary-soft: #e3f1e9;
+    --accent: #d97a1e;
+    --accent-soft: #fbecdc;
+    --shadow: 0 1px 2px rgba(31,42,36,0.06), 0 8px 24px rgba(31,42,36,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121614;
+      --surface: #1a201d;
+      --surface-2: #222a26;
+      --text: #e8ece9;
+      --muted: #a3ada7;
+      --border: #2f3934;
+      --primary: #4fbf8a;
+      --primary-ink: #0d1a13;
+      --primary-soft: #1d3329;
+      --accent: #f0a050;
+      --accent-soft: #3a2a1a;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121614;
+    --surface: #1a201d;
+    --surface-2: #222a26;
+    --text: #e8ece9;
+    --muted: #a3ada7;
+    --border: #2f3934;
+    --primary: #4fbf8a;
+    --primary-ink: #0d1a13;
+    --primary-soft: #1d3329;
+    --accent: #f0a050;
+    --accent-soft: #3a2a1a;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.25);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--primary); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+  /* Header */
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 12px; }
+  .brand { font-weight: 800; font-size: 18px; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
+  .brand span { color: var(--primary); }
+  nav.links { display: flex; gap: 20px; }
+  nav.links a { color: var(--muted); text-decoration: none; font-size: 15px; font-weight: 500; }
+  nav.links a:hover { color: var(--text); }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; border-radius: 10px;
+    font-weight: 600; font-size: 16px; text-decoration: none;
+    border: 1px solid transparent; cursor: pointer; white-space: nowrap;
+  }
+  .btn svg { width: 18px; height: 18px; flex: none; }
+  .btn-primary { background: var(--primary); color: var(--primary-ink); }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn-ghost { background: var(--surface); color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--muted); }
+  .btn-sm { padding: 8px 14px; font-size: 14px; }
+
+  /* Hero */
+  .hero { padding: 72px 0 56px; }
+  .eyebrow {
+    display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent); background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(32px, 5.4vw, 54px); line-height: 1.12; letter-spacing: -0.025em; font-weight: 800; max-width: 820px; }
+  .hero h1 em { font-style: normal; color: var(--primary); }
+  .hero p.lead { font-size: clamp(17px, 2vw, 20px); color: var(--muted); max-width: 680px; margin-top: 20px; }
+  .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .hero .meta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--muted); font-size: 15px; }
+  .hero .meta b { color: var(--text); font-weight: 600; }
+
+  /* Sections */
+  section { padding: 64px 0; }
+  section.alt { background: var(--surface-2); }
+  .sec-head { max-width: 720px; margin-bottom: 36px; }
+  .sec-head h2 { font-size: clamp(26px, 3.6vw, 36px); line-height: 1.2; letter-spacing: -0.02em; font-weight: 800; }
+  .sec-head p { color: var(--muted); margin-top: 12px; font-size: 18px; }
+
+  /* Pain list */
+  .pains { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+  .pain {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+  }
+  .pain .dot { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; margin-top: 2px; }
+  .pain .dot svg { width: 12px; height: 12px; }
+  .callout {
+    margin-top: 24px; padding: 18px 20px; border-radius: 12px;
+    background: var(--primary-soft); color: var(--text); font-weight: 500; border-left: 4px solid var(--primary);
+  }
+
+  /* Services */
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .card .num { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; }
+  .card h3 { font-size: 20px; line-height: 1.3; margin: 6px 0 10px; letter-spacing: -0.01em; }
+  .card p { color: var(--muted); font-size: 16px; }
+  .card ul { list-style: none; margin-top: 14px; display: grid; gap: 8px; }
+  .card li { position: relative; padding-left: 22px; font-size: 15.5px; }
+  .card li::before {
+    content: ""; position: absolute; left: 2px; top: 9px; width: 8px; height: 8px; border-radius: 2px; background: var(--primary);
+  }
+  .card.featured { border-color: var(--primary); }
+  .tag { display: inline-block; font-size: 12px; font-weight: 700; background: var(--primary); color: var(--primary-ink); padding: 3px 10px; border-radius: 999px; margin-left: 8px; vertical-align: middle; }
+
+  /* Who table */
+  .who { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+  .who-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+  .who-item h4 { font-size: 16.5px; margin-bottom: 4px; }
+  .who-item p { color: var(--muted); font-size: 15px; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; counter-reset: step; }
+  .step { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; position: relative; }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+    background: var(--primary); color: var(--primary-ink); font-weight: 800; margin-bottom: 12px;
+  }
+  .step h4 { font-size: 17px; margin-bottom: 6px; }
+  .step p { color: var(--muted); font-size: 15px; }
+
+  /* Packages */
+  .packages { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .pkg { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; }
+  .pkg h4 { font-size: 18px; }
+  .pkg .price { font-size: 22px; font-weight: 800; margin: 8px 0 10px; color: var(--primary); }
+  .pkg .price.tbd { font-size: 16px; font-weight: 600; color: var(--muted); }
+  .pkg p { color: var(--muted); font-size: 15px; }
+  .note { margin-top: 18px; color: var(--muted); font-size: 15px; }
+
+  /* Why */
+  .why { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .why-item h4 { font-size: 17.5px; margin-bottom: 6px; display: flex; gap: 10px; align-items: center; }
+  .why-item h4 svg { width: 20px; height: 20px; color: var(--primary); flex: none; }
+  .why-item p { color: var(--muted); font-size: 16px; }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: start; }
+  @media (min-width: 860px) { .about { grid-template-columns: 1.4fr 1fr; } }
+  .about p { margin-bottom: 14px; font-size: 17px; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .stat b { display: block; font-size: 26px; font-weight: 800; color: var(--primary); letter-spacing: -0.02em; }
+  .stat span { color: var(--muted); font-size: 14px; }
+
+  /* FAQ */
+  .faq { display: grid; gap: 10px; max-width: 820px; }
+  details { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 0 18px; }
+  summary { cursor: pointer; list-style: none; padding: 16px 0; font-weight: 600; display: flex; justify-content: space-between; gap: 12px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-weight: 700; color: var(--primary); font-size: 20px; line-height: 1; }
+  details[open] summary::after { content: "\2013"; }
+  details p { padding: 0 0 16px; color: var(--muted); }
+
+  /* Contact */
+  .contact {
+    background: var(--primary); color: var(--primary-ink); border-radius: 20px; padding: 40px 28px;
+    display: grid; gap: 24px;
+  }
+  @media (min-width: 860px) { .contact { grid-template-columns: 1.3fr 1fr; padding: 48px; align-items: center; } }
+  .contact h2 { font-size: clamp(26px, 3.6vw, 34px); line-height: 1.2; letter-spacing: -0.02em; }
+  .contact p { margin-top: 10px; opacity: 0.9; font-size: 17px; }
+  .contact .btns { display: grid; gap: 10px; }
+  .contact .btn { justify-content: center; }
+  .contact .btn-light { background: var(--primary-ink); color: var(--primary); }
+  .contact .btn-outline { border-color: color-mix(in srgb, var(--primary-ink) 50%, transparent); color: var(--primary-ink); }
+  .contact dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin-top: 20px; font-size: 15px; }
+  .contact dt { opacity: 0.75; }
+  .contact dd a { color: inherit; }
+
+  footer { padding: 32px 0 96px; color: var(--muted); font-size: 14px; text-align: center; }
+  footer a { color: var(--muted); }
+
+  /* Mobile action bar */
+  .mobile-bar { display: none; }
+  @media (max-width: 720px) {
+    nav.links { display: none; }
+    .hero { padding: 48px 0 40px; }
+    section { padding: 48px 0; }
+    .hero .cta .btn { flex: 1 1 100%; justify-content: center; }
+    .mobile-bar {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      background: var(--surface); border-top: 1px solid var(--border);
+    }
+    .mobile-bar .btn { justify-content: center; padding: 11px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.86 9.86 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48a.92.92 0 0 0-.66.31c-.23.25-.87.85-.87 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm18 2-10 7L2 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m8 12 3 3 5-6"/></symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a href="#" class="brand">Sri Harsha <span>Digital</span></a>
+    <nav class="links" aria-label="Sections">
+      <a href="#services">Services</a>
+      <a href="#who">Who I help</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="https://wa.me/919880122928?text=Hi%2C%20I%20would%20like%20a%20free%20business%20health%20check." target="_blank" rel="noopener">
+      <svg><use href="#i-wa"/></svg>WhatsApp
+    </a>
+  </div>
+</header>
+
+<main>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">For Indian small businesses</span>
+    <h1>Your business, <em>simpler and faster.</em> Software built for how you work.</h1>
+    <p class="lead">Many small businesses still run on notebooks, WhatsApp messages, and a few Excel files only one person understands. I take the repetitive, error-prone work off your plate, starting with something as simple as a Google Sheet that fills itself, up to a small app built only for your shop, clinic, factory, or office.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://wa.me/919880122928?text=Hi%2C%20I%20would%20like%20a%20free%20business%20health%20check." target="_blank" rel="noopener">
+        <svg><use href="#i-wa"/></svg>Book a free health check
+      </a>
+      <a class="btn btn-ghost" href="#services">See what I can do</a>
+    </div>
+    <div class="meta">
+      <span><b>No jargon.</b> Explained in Kannada, Hindi, or English</span>
+      <span><b>Fixed price</b>, agreed upfront</span>
+      <span><b>Bengaluru</b> on-site, online across India</span>
+    </div>
+  </div>
+</section>
+
+<!-- Pains -->
+<section class="alt" id="sound-familiar">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Does this sound like your business?</h2>
+      <p>That works, until the business grows, a key person is on leave, a payment is missed, or stock runs out without anyone noticing.</p>
+    </div>
+    <div class="pains">
+      <div class="pain"><span class="dot"><svg><use href="#i-check"/></svg></span><span>You write orders in a notebook and later type them into Excel, or never do.</span></div>
+      <div class="pain"><span class="dot"><svg><use href="#i-check"/></svg></span><span>You do not know how much stock you have until you physically count it.</span></div>
+      <div class="pain"><span class="dot"><svg><use href="#i-check"/></svg></span><span>Customers forget to pay, and you forget to remind them.</span></div>
+      <div class="pain"><span class="dot"><svg><use href="#i-check"/></svg></span><span>Staff send the same updates on WhatsApp every day, and you copy them somewhere else.</span></div>
+      <div class="pain"><span class="dot"><svg><use href="#i-check"/></svg></span><span>A quotation or invoice takes 20 minutes because you start from scratch each time.</span></div>
+      <div class="pain"><span class="dot"><svg><use href="#i-check"/></svg></span><span>Month-end means hours of adding up numbers for your accountant.</span></div>
+      <div class="pain"><span class="dot"><svg><use href="#i-check"/></svg></span><span>Your Excel "system" breaks whenever someone touches the wrong cell.</span></div>
+      <div class="pain"><span class="dot"><svg><use href="#i-check"/></svg></span><span>You bought software, but nobody uses it because it does not match how you work.</span></div>
+      <div class="pain"><span class="dot"><svg><use href="#i-check"/></svg></span><span>You have heard about AI but do not know if any of it applies to a business like yours.</span></div>
+    </div>
+    <div class="callout">If even two of these are true, a small amount of help can save you several hours every week.</div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>What I can do for you</h2>
+      <p>Start with one small change. Grow only when you see the benefit.</p>
+    </div>
+    <div class="services">
+      <article class="card featured">
+        <div class="num">01</div>
+        <h3>Free Business Health Check <span class="tag">Free</span></h3>
+        <p>A one-hour conversation, in person or on a call, about how your business runs day to day: orders, stock, staff, payments, customers. You get a short written list of:</p>
+        <ul>
+          <li>What can be simplified or automated</li>
+          <li>Roughly what it costs and how much time it saves</li>
+          <li>What to do first</li>
+        </ul>
+        <p style="margin-top:14px">Even if you never work with me, you leave with ideas you can use.</p>
+      </article>
+      <article class="card">
+        <div class="num">02</div>
+        <h3>Google Sheets and Excel made useful</h3>
+        <p>Most small businesses do not need new software. They need their existing sheets to work properly.</p>
+        <ul>
+          <li>Clean sheets for orders, stock, expenses, attendance, customers</li>
+          <li>Drop-downs and checks so staff cannot enter wrong data</li>
+          <li>Automatic totals, daily and monthly summaries, simple charts</li>
+          <li>Google Forms so staff or customers fill data from their phones</li>
+          <li>Reminders for low stock, payments due, renewals, follow-ups</li>
+          <li>Daily or weekly summary sent to your email or phone</li>
+        </ul>
+      </article>
+      <article class="card">
+        <div class="num">03</div>
+        <h3>Everyday automation</h3>
+        <p>Stop doing the same thing by hand every day.</p>
+        <ul>
+          <li>Invoices and quotations as PDF in one click, ready to share</li>
+          <li>Payment reminders on WhatsApp, SMS, or email</li>
+          <li>Order collection through a simple form or WhatsApp</li>
+          <li>Appointment booking and reminders</li>
+          <li>Staff reports on sales, attendance, or site updates in one place</li>
+          <li>Supplier and purchase tracking: ordered, received, paid</li>
+        </ul>
+      </article>
+      <article class="card">
+        <div class="num">04</div>
+        <h3>Custom software built only for you</h3>
+        <p>When sheets are not enough, a small focused app that fits your exact workflow. Nothing more, nothing less.</p>
+        <ul>
+          <li>Mobile-friendly apps your staff use on their phones</li>
+          <li>Billing, inventory, and orders for your specific products</li>
+          <li>Job cards and production tracking for workshops</li>
+          <li>Student, batch, and fee management for coaching centres</li>
+          <li>Patient records and appointments for clinics</li>
+          <li>Dashboards: today's sales, pending payments, stock at a glance</li>
+        </ul>
+        <p style="margin-top:14px">You own what is built. No lock-in, no expensive monthly subscription.</p>
+      </article>
+      <article class="card">
+        <div class="num">05</div>
+        <h3>AI assistants that actually help</h3>
+        <p>AI is no longer only for big companies. Practical uses for a small business:</p>
+        <ul>
+          <li>WhatsApp assistant answering common questions in Kannada, Hindi, or English</li>
+          <li>Reading bills and handwritten notes from photos into your sheet</li>
+          <li>Drafting replies, product descriptions, posts, and quotations</li>
+          <li>Plain-language summaries of daily sales or feedback</li>
+        </ul>
+        <p style="margin-top:14px">Suggested only where it saves real time or money.</p>
+      </article>
+      <article class="card">
+        <div class="num">06</div>
+        <h3>Teaching you and your staff</h3>
+        <p>A tool is useless if nobody uses it. Every engagement includes hands-on training until your team is comfortable.</p>
+        <ul>
+          <li>Google Sheets and Forms basics for owners and staff</li>
+          <li>WhatsApp Business: catalogues, labels, quick replies, broadcasts</li>
+          <li>Using ChatGPT, Gemini, or Claude for everyday business work</li>
+          <li>Short refresher sessions when new staff join</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Who -->
+<section class="alt" id="who">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Who I work with</h2>
+      <p>If your business is not listed, it does not matter. If you do something repetitive every day, it can probably be made easier.</p>
+    </div>
+    <div class="who">
+      <div class="who-item"><h4>Kirana and retail shops</h4><p>Stock tracking, credit (udhaar) records, supplier orders, daily sales summary</p></div>
+      <div class="who-item"><h4>Wholesalers and distributors</h4><p>Order taking, dispatch tracking, outstanding payments, salesman reports</p></div>
+      <div class="who-item"><h4>Small manufacturers and workshops</h4><p>Job cards, raw material stock, production status, delivery schedules</p></div>
+      <div class="who-item"><h4>Clinics, labs, pharmacies</h4><p>Appointments, reminders, patient records, medicine stock and expiry</p></div>
+      <div class="who-item"><h4>Coaching centres and tuition classes</h4><p>Admissions, batches, attendance, fee collection and reminders</p></div>
+      <div class="who-item"><h4>Restaurants, caterers, bakeries</h4><p>Orders, ingredient stock, daily cash, event bookings</p></div>
+      <div class="who-item"><h4>Service businesses</h4><p>Salons, repair, pest control, interiors, travel: bookings, technician assignment, follow-ups, invoices</p></div>
+      <div class="who-item"><h4>CA, legal, and consulting offices</h4><p>Client document tracking, deadlines, compliance reminders, billing</p></div>
+      <div class="who-item"><h4>Builders and contractors</h4><p>Site updates, material tracking, labour attendance, payments</p></div>
+      <div class="who-item"><h4>Home businesses and online sellers</h4><p>Orders from WhatsApp and Instagram, delivery tracking, accounts</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- How -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>How it works</h2>
+      <p>Results within days, not months.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><h4>Talk (free)</h4><p>We meet or call for an hour. You explain how things work today. I mostly listen and ask questions.</p></div>
+      <div class="step"><h4>Simple plan</h4><p>A short written plan: what I will do, how long it takes, and a fixed price. No surprises.</p></div>
+      <div class="step"><h4>Start small</h4><p>We begin with the one change that gives the biggest relief.</p></div>
+      <div class="step"><h4>Build and train</h4><p>I set it up, train you and your staff, and adjust based on real use.</p></div>
+      <div class="step"><h4>Support</h4><p>Help is a phone call away. Optional monthly support for ongoing changes.</p></div>
+    </div>
+
+    <div class="sec-head" style="margin-top:56px">
+      <h2>Packages</h2>
+      <p>Prices are fixed and agreed upfront. The exact amount is quoted after the health check.</p>
+    </div>
+    <div class="packages">
+      <div class="pkg"><h4>Health Check</h4><div class="price">Free</div><p>One-hour session and a written list of improvements.</p></div>
+      <div class="pkg"><h4>Quick Fix</h4><div class="price tbd">Fixed quote</div><p>One sheet, form, or automation set up and explained. For example, a stock sheet with low-stock alerts.</p></div>
+      <div class="pkg"><h4>Business Starter</h4><div class="price tbd">Fixed quote</div><p>2 to 4 connected automations across orders, billing, stock, or payments, plus staff training.</p></div>
+      <div class="pkg"><h4>Custom App</h4><div class="price tbd">Quoted per project</div><p>A small app built for your specific workflow, with training and 1 month of support.</p></div>
+      <div class="pkg"><h4>Monthly Support</h4><div class="price tbd">Per month</div><p>Changes, fixes, new reports, and help for your staff.</p></div>
+      <div class="pkg"><h4>Training Session</h4><div class="price tbd">Half or full day</div><p>Hands-on session for owners and staff, in your preferred language.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Why -->
+<section class="alt" id="why">
+  <div class="wrap">
+    <div class="sec-head"><h2>Why work with me</h2></div>
+    <div class="why">
+      <div class="why-item"><h4><svg><use href="#i-tick"/></svg>I explain things simply</h4><p>You do not need to know anything about technology. If you can use WhatsApp, you can use what I build.</p></div>
+      <div class="why-item"><h4><svg><use href="#i-tick"/></svg>Built for how you already work</h4><p>I study your business first, then fit the tool to it, not the other way around.</p></div>
+      <div class="why-item"><h4><svg><use href="#i-tick"/></svg>Start small, grow later</h4><p>No large upfront spend. Start with one problem and expand only when you see the benefit.</p></div>
+      <div class="why-item"><h4><svg><use href="#i-tick"/></svg>Your data stays yours</h4><p>Your sheets, your apps, your accounts. Nothing hidden or locked away.</p></div>
+      <div class="why-item"><h4><svg><use href="#i-tick"/></svg>Local and reachable</h4><p>Based in Bengaluru, speaks Kannada, Hindi, and English, available on phone and WhatsApp.</p></div>
+      <div class="why-item"><h4><svg><use href="#i-tick"/></svg>Serious engineering behind simple tools</h4><p>22+ years building large systems used by millions of mobile customers across India. The same care goes into a small shop's stock sheet.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <div class="sec-head" style="margin-bottom:20px"><h2>About me</h2></div>
+      <p>I am Sri Harsha, a software architect with more than 22 years of experience at Nokia, Samsung, Cisco, and Ribbon. I have built telecom systems that run India's mobile networks, including work on Reliance Jio's 4G network and 5G analytics for Airtel, and I hold a US patent. In recent years I have been building AI systems and training teams to use them.</p>
+      <p>I have also spent many years teaching: training engineers, mentoring university students, and helping non-technical teams like sales use new tools confidently. That is the part I enjoy most, seeing someone go from "I don't understand computers" to "I did this myself."</p>
+      <p>Small businesses are the backbone of India. Most of them can save hours every week with tools that already exist and cost very little. I want to help them get there.</p>
+      <p><a href="../profile/">View full profile</a></p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>22+</b><span>years building software</span></div>
+      <div class="stat"><b>3</b><span>products taken to market</span></div>
+      <div class="stat"><b>Millions</b><span>of users on systems I built</span></div>
+      <div class="stat"><b>3</b><span>languages: Kannada, Hindi, English</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="alt" id="faq">
+  <div class="wrap">
+    <div class="sec-head"><h2>Frequently asked questions</h2></div>
+    <div class="faq">
+      <details><summary>My business is very small. Is this for me?</summary><p>Yes. Some of the most useful work is a single well-made Google Sheet. Small is exactly who this is for.</p></details>
+      <details><summary>I am not good with computers or phones. Will I be able to use it?</summary><p>Yes. Everything is designed for the people who will actually use it, and I train you until you are comfortable.</p></details>
+      <details><summary>Do I need to buy new computers or expensive software?</summary><p>Usually not. Most work uses your existing phone, a free Google account, and WhatsApp.</p></details>
+      <details><summary>What if something stops working later?</summary><p>Call or message me. Small fixes are handled quickly, and monthly support is available if you want ongoing help.</p></details>
+      <details><summary>Will my business data be safe?</summary><p>Your data stays in your own Google account or system. I explain who has access, and you can remove my access at any time.</p></details>
+      <details><summary>Can you work with my accountant or billing software like Tally?</summary><p>Yes. Often the goal is to get clean data to your accountant or billing software with less manual typing.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <h2>Tell me what wastes the most time every day.</h2>
+        <p>Send a WhatsApp message or call. Tell me what your business does, and we will start from there.</p>
+        <dl>
+          <dt>Phone</dt><dd><a href="tel:+919880122928">+91 98801 22928</a></dd>
+          <dt>Email</dt><dd><a href="mailto:reach.sriharsha@gmail.com">reach.sriharsha@gmail.com</a></dd>
+          <dt>Location</dt><dd>Bengaluru on-site, online anywhere in India</dd>
+          <dt>Languages</dt><dd>Kannada, Hindi, English</dd>
+        </dl>
+      </div>
+      <div class="btns">
+        <a class="btn btn-light" href="https://wa.me/919880122928?text=Hi%2C%20I%20would%20like%20a%20free%20business%20health%20check." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Message on WhatsApp</a>
+        <a class="btn btn-outline" href="tel:+919880122928"><svg><use href="#i-phone"/></svg>Call now</a>
+        <a class="btn btn-outline" href="mailto:reach.sriharsha@gmail.com?subject=Business%20health%20check"><svg><use href="#i-mail"/></svg>Send an email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">Sri Harsha, Bengaluru &middot; <a href="../profile/">Profile</a> &middot; <a href="mailto:reach.sriharsha@gmail.com">reach.sriharsha@gmail.com</a></div>
+</footer>
+
+<div class="mobile-bar">
+  <a class="btn btn-primary" href="https://wa.me/919880122928?text=Hi%2C%20I%20would%20like%20a%20free%20business%20health%20check." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+  <a class="btn btn-ghost" href="tel:+919880122928"><svg><use href="#i-phone"/></svg>Call</a>
+</div>
+
+</body>
+</html>
